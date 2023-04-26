@@ -39,6 +39,26 @@ typedef struct {
 	  address head;
 } Tree;
 
+<<<<<<< HEAD
+=======
+typedef struct tElmBinTree *addressBin;
+typedef struct tElmBinTree{
+	infotype infoB;
+	addressBin left;
+	addressBin right;
+	} ElmBinTree;
+
+
+typedef struct {
+	  addressBin pointer;
+} BinTree;
+
+
+//Adrian
+addressBin transformToBin(address nbRoot);
+addressBin AlokasiBin (infotype nama);
+void bPreOrder(addressBin B);
+>>>>>>> 140138136719b682505eafb85527c48ba46cb144
 /*********** PROTOTYPE ****************/
 /**** Predikat untuk test keadaan Tree ****/
 boolean IsEmpty (Tree L);
@@ -102,6 +122,10 @@ void Enqueue (ListQ * L, address X);
 void DelQueue (ListQ * L, addressQueue *P);
 void PrintInfo (ListQ L);
 
+<<<<<<< HEAD
+=======
+void nbPreOrder(address root);
+>>>>>>> 140138136719b682505eafb85527c48ba46cb144
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

@@ -37,7 +37,11 @@ address Alokasi (infotype nama){
 
 
 void insTree(Tree *L, infotype X){ 
+<<<<<<< HEAD
 	address newnode, temp, parent_node,root;
+=======
+	address newnode, temp, parent_node, root = (*L).head;
+>>>>>>> 140138136719b682505eafb85527c48ba46cb144
 	infotype parent;
 	root=Head(*L);
 	newnode = Alokasi (X); //menampung alokasi node ke newnode
@@ -48,7 +52,11 @@ void insTree(Tree *L, infotype X){
 	if(Head(*L) != Nil){ //cek tree sudah ada root atau belum
 		for(;;){
 			printf("## Daftar yang bisa dijadikan Parent ## \n");
+<<<<<<< HEAD
 			PreOrder(L,root);
+=======
+			nbPreOrder(root);
+>>>>>>> 140138136719b682505eafb85527c48ba46cb144
 			parent = (STRING) malloc(10 * sizeof(char)); //alokasi tempat untuk parent
 			printf("\nMasukkan parent: ");
 			scanf("%10s", parent);
@@ -100,44 +108,48 @@ address Search(address P, infotype item){
 	return Nil; //jika tidak ketemu mengembalikan nilai Nil
 }
 
+<<<<<<< HEAD
 void PreOrder(Tree *P, address root){
 	if(IsEmpty(*P)==true){
 		printf("tree kosong...\n");
 		return;
 	}
+=======
+void nbPreOrder(address root){
+>>>>>>> 140138136719b682505eafb85527c48ba46cb144
 	if (root!=NULL){
 		printf("%s ", root->info);
-		PreOrder(P,root->fs);
-		PreOrder(P,root->nb);
+		nbPreOrder(root->fs);
+		nbPreOrder(root->nb);
 	}
-//	address curr= Head(*L);
-//	boolean Resmi = true;
-//	if(IsEmpty(*L)==true){
-//		printf("tree kosong...\n");
-//		return;
-//	}
-//	printf(" %s",Info(curr));
-//	if(Fs(curr) != Nil) {
-//		curr=Fs(curr);
+//		address curr= Head(*L);
+//		boolean Resmi = true;
+//		if(IsEmpty(*L)==true){
+//			printf("tree kosong...\n");
+//			return;
+//		}
 //		printf(" %s",Info(curr));
-//		Resmi=true;
-//	} else {
-//		return;
-//	}
-//	do{
-//		if(Fs(curr) != Nil && Resmi==true){
+//		if(Fs(curr) != Nil) {
 //			curr=Fs(curr);
 //			printf(" %s",Info(curr));
 //			Resmi=true;
-//		}else if(Nb(curr) != Nil){
-//			curr=Nb(curr);
-//			printf(" %s",Info(curr));
-//			Resmi=true;
-//		}else{
-//			curr=Pr(curr);
-//			Resmi=false;
+//		} else {
+//			return;
 //		}
-//	}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
+//		do{
+//			if(Fs(curr) != Nil && Resmi==true){
+//				curr=Fs(curr);
+//				printf(" %s",Info(curr));
+//				Resmi=true;
+//			}else if(Nb(curr) != Nil){
+//				curr=Nb(curr);
+//				printf(" %s",Info(curr));
+//				Resmi=true;
+//			}else{
+//				curr=Pr(curr);
+//				Resmi=false;
+//			}
+//		}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
 }
 
 
@@ -265,6 +277,7 @@ addressBin AlokasiBin (infotype nama){
 	return (P);
 }
 
+<<<<<<< HEAD
 
 //void insBTree(BinTree * L, infotype nama){
 //	addressBin newnode;
@@ -392,13 +405,35 @@ void transformToBin(Tree L, BinTree *B){
 
 
 void preOrder(addressBin B) {
+=======
+addressBin transformToBin(address nbRoot){
+    if(nbRoot == NULL) return NULL;
+
+    addressBin bRoot = AlokasiBin(nbRoot->info);
+
+    if(nbRoot->fs != NULL){
+        bRoot->left = transformToBin(nbRoot->fs);
+        address nbChild = nbRoot->fs;
+        addressBin bChild = bRoot->left;
+
+        while(nbChild->nb != NULL){
+            bChild->right = transformToBin(nbChild->nb);
+            nbChild = nbChild->nb;
+            bChild = bChild->right;
+        }
+    }
+    return bRoot;
+}
+
+void bPreOrder(addressBin B) {
+>>>>>>> 140138136719b682505eafb85527c48ba46cb144
     if (B == NULL){
     	printf("binary tree kosong...");
         return;
     }
     printf("%s ", B->infoB);
-    preOrder(B->left);
-    preOrder(B->right);
+    bPreOrder(B->left);
+    bPreOrder(B->right);
 }
 
 void PrintInfo (ListQ L)
@@ -432,5 +467,4 @@ void PrintInfo (ListQ L)
 		 }
 	}
 }
-
 
