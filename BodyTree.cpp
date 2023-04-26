@@ -47,7 +47,7 @@ void insTree(Tree *L, infotype X){
 	if(Head(*L) != Nil){ //cek tree sudah ada root atau belum
 		for(;;){
 			printf("## Daftar yang bisa dijadikan Parent ## \n");
-			PreOrder((*L), root);
+			nbPreOrder(root);
 			parent = (STRING) malloc(10 * sizeof(char)); //alokasi tempat untuk parent
 			printf("\nMasukkan parent: ");
 			scanf("%10s", parent);
@@ -99,40 +99,40 @@ address Search(address P, infotype item){
 	return Nil; //jika tidak ketemu mengembalikan nilai Nil
 }
 
-void PreOrder(Tree P, address root){
+void nbPreOrder(address root){
 	if (root!=NULL){
 		printf("%s ", root->info);
-		PreOrder(P,root->fs);
-		PreOrder(P,root->nb);
+		nbPreOrder(root->fs);
+		nbPreOrder(root->nb);
 	}
-//	address curr= Head(*L);
-//	boolean Resmi = true;
-//	if(IsEmpty(*L)==true){
-//		printf("tree kosong...\n");
-//		return;
-//	}
-//	printf(" %s",Info(curr));
-//	if(Fs(curr) != Nil) {
-//		curr=Fs(curr);
+//		address curr= Head(*L);
+//		boolean Resmi = true;
+//		if(IsEmpty(*L)==true){
+//			printf("tree kosong...\n");
+//			return;
+//		}
 //		printf(" %s",Info(curr));
-//		Resmi=true;
-//	} else {
-//		return;
-//	}
-//	do{
-//		if(Fs(curr) != Nil && Resmi==true){
+//		if(Fs(curr) != Nil) {
 //			curr=Fs(curr);
 //			printf(" %s",Info(curr));
 //			Resmi=true;
-//		}else if(Nb(curr) != Nil){
-//			curr=Nb(curr);
-//			printf(" %s",Info(curr));
-//			Resmi=true;
-//		}else{
-//			curr=Pr(curr);
-//			Resmi=false;
+//		} else {
+//			return;
 //		}
-//	}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
+//		do{
+//			if(Fs(curr) != Nil && Resmi==true){
+//				curr=Fs(curr);
+//				printf(" %s",Info(curr));
+//				Resmi=true;
+//			}else if(Nb(curr) != Nil){
+//				curr=Nb(curr);
+//				printf(" %s",Info(curr));
+//				Resmi=true;
+//			}else{
+//				curr=Pr(curr);
+//				Resmi=false;
+//			}
+//		}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
 }
 
 addressBin AlokasiBin (infotype nama){
@@ -152,97 +152,33 @@ addressBin AlokasiBin (infotype nama){
 	return (P);
 }
 
-void transformToBin(Tree L, BinTree *B, address root){
-//	addressBin , parent, brother;
-	if(!IsEmpty(L)){
-//		address curr= Head(*L);
-//		boolean Resmi = true;
-//		printf(" %s",Info(curr));
-//		P = AlokasiBin(Info(curr));
-//		if(Fs(curr) != Nil) {
-//			curr=Fs(curr);
-//			printf(" %s",Info(curr));
-//			parent = (addressBin) malloc (sizeof (ElmBinTree));
-//			parent = P;
-//			P = AlokasiBin(Info(curr));
-//			temp->left = P; 
-//			free(P);
-//			free(parent);
-//			Resmi=true;
-//		} else {
-//			return;
-//		}
-//		do{
-//			if(Fs(curr) != Nil && Resmi==true){
-//				curr=Fs(curr);
-//				printf(" %s",Info(curr));
-//				parent = (addressBin) malloc (sizeof (ElmBinTree));
-//				parent = P;
-//				P = AlokasiBin(Info(curr));
-//				parent->left = P; 
-//				free(P);
-////				free(temp);
-//				Resmi=true;
-//			}else if(Nb(curr) != Nil){
-//				curr=Nb(curr);
-//				printf(" %s",Info(curr));
-//				P = AlokasiBin(Info(curr));
-//				temp->right = P;
-//				temp = P;
-//				free(P);
-//				Resmi=true;
-//			}else{
-//				curr=Pr(curr);
-//				Resmi=false;
-//			}
-//		}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
+addressBin transformToBin(address nbRoot){
+    if(nbRoot == NULL) return NULL;
 
-        addressBin P = (addressBin) malloc(sizeof(ElmBinTree));
-        P->infoB = root->info;
-        P->left = NULL;
-        P->right = NULL;
+    addressBin bRoot = AlokasiBin(nbRoot->info);
 
-        if (root->fs != NULL) {
-            // konversi tipe data dari address menjadi addressBin
-            addressBin child = (addressBin) malloc(sizeof(ElmBinTree));
-            child->infoB = root->fs->info;
-            child->left = NULL;
-            child->right = NULL;
+    if(nbRoot->fs != NULL){
+        bRoot->left = transformToBin(nbRoot->fs);
+        address nbChild = nbRoot->fs;
+        addressBin bChild = bRoot->left;
 
-            P->left = child;
-            // rekursif memproses child pertama
-            transformToBin(L, B, root->fs);
+        while(nbChild->nb != NULL){
+            bChild->right = transformToBin(nbChild->nb);
+            nbChild = nbChild->nb;
+            bChild = bChild->right;
         }
-
-        if (root->nb != NULL) {
-            // konversi tipe data dari address menjadi addressBin
-            addressBin sibling = (addressBin) malloc(sizeof(ElmBinTree));
-            sibling->infoB = root->nb->info;
-            sibling->left = NULL;
-            sibling->right = NULL;
-
-            P->right = sibling;
-            // rekursif memproses sibling berikutnya
-            transformToBin(L, B, root->nb);
-        }
-
-        // mengubah pointer pada B menjadi P
-        (*B).pointer = P;
-	}
-	else{
-		printf("Tree Kosong\n");
-	}
+    }
+    return bRoot;
 }
 
-void preOrder(addressBin B) {
+void bPreOrder(addressBin B) {
     if (B == NULL){
         return;
     }
     printf("%s ", B->infoB);
-    preOrder(B->left);
-    preOrder(B->right);
+    bPreOrder(B->left);
+    bPreOrder(B->right);
 }
-
 
 
 
