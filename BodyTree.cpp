@@ -37,7 +37,7 @@ address Alokasi (infotype nama){
 
 
 void insTree(Tree *L, infotype X){ 
-	address newnode, temp, parent_node;
+	address newnode, temp, parent_node, root = (*L).head;
 	infotype parent;
 	newnode = Alokasi (X); //menampung alokasi node ke newnode
 	if(newnode == Nil){
@@ -47,7 +47,7 @@ void insTree(Tree *L, infotype X){
 	if(Head(*L) != Nil){ //cek tree sudah ada root atau belum
 		for(;;){
 			printf("## Daftar yang bisa dijadikan Parent ## \n");
-//			PreOrder(L);
+			PreOrder((*L), root);
 			parent = (STRING) malloc(10 * sizeof(char)); //alokasi tempat untuk parent
 			printf("\nMasukkan parent: ");
 			scanf("%10s", parent);
