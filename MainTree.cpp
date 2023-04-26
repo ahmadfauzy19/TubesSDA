@@ -6,11 +6,11 @@
 
 int main(){
 	/* Kamus Lokal */
-	address P,*Q, Pre;
+	address P,Q, Pre;
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama,buku;
-	int pilihan;
+	int pilihan, currlevel,deslevel;
 	char ask;
 		
 	/* Program */
@@ -30,8 +30,8 @@ int main(){
 				do{
 					system("cls");
 					printf("**tampilan preorder **\n");
-//					PreOrder(&Mytree);
-					Q=&Mytree.head;
+					Q=Mytree.head;
+					PreOrder(&Mytree, Q);
 					nama=(STRING)malloc(10*sizeof(char));
 					printf("\nmasukan nama :");scanf("%s", nama);
 					P=Search(Head(Mytree), nama);
@@ -46,18 +46,19 @@ int main(){
 				break;
 			case 2:
 				Pre = Mytree.head;
-				PreOrder(Mytree, Pre);
+				PreOrder(&Mytree, Pre);
 				break;
 			case 3:
 				break;
 			case 4:
 				break;
 			case 5:
+//				LevelOrderTraversal(Mytree);
 				break;
 			case 6:
-//				printf("Transform ke binary ...\n");
+				printf("Transform ke binary ...\n");
 //				Pre = Mytree.head;
-//				transformToBin(Mytree, &Btree, Pre);
+				transformToBin(Mytree, &Btree);
 //				preOrder(Btree.pointer);
 //				system("Pause");
 				break;

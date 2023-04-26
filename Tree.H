@@ -16,18 +16,15 @@
 #define Pr(L) (L)->pr
 #define Head(P) (P).head
 #define Pointer(P) (P).pointer
+#define First(L) (L).First
+#define Rear(L) (L).Rear
+#define InfoQ(P) (P)->infoQ
+#define Next(P) (P)->next
 #define STRING char*
-//typedef struct telmTree *address;
-//typedef struct telmTree {
-//    infotype info;
-//    address fs;
-//    address nb;
-//} ElmTree;
-//
-//typedef struct {
-//    address head;
-//} Tree;
 
+
+
+//kamus data Non binary tree
 typedef STRING infotype;
 typedef struct tElmTree *address;
 typedef struct tElmTree{
@@ -42,23 +39,6 @@ typedef struct {
 	  address head;
 } Tree;
 
-typedef struct tElmBinTree *addressBin;
-typedef struct tElmBinTree{
-	infotype infoB;
-	addressBin left;
-	addressBin right;
-	} ElmBinTree;
-
-
-typedef struct {
-	  addressBin pointer;
-} BinTree;
-
-
-//Adrian
-void transformToBin(Tree L, BinTree *B, address P);
-addressBin AlokasiBin (infotype nama);
-void preOrder(addressBin B);
 /*********** PROTOTYPE ****************/
 /**** Predikat untuk test keadaan Tree ****/
 boolean IsEmpty (Tree L);
@@ -77,10 +57,51 @@ address Alokasi (infotype nama);
 /* Jika alokasi gagal, mengirimkan Nil */
 
 void insTree(Tree *L, infotype X);
-
 address Search(address P, infotype item);
+void PreOrder(Tree *P, address root);
+void LevelOrderTraversal(Tree L);
+//void nbLevelOrder(Tree *P, address root,int curLevel, int desLevel);
 
-void PreOrder(Tree P, address root);
+
+// kamus .h Adrian (transformasi ke Biner)
+typedef struct tElmBinTree *addressBin;
+typedef struct tElmBinTree{
+	infotype infoB;
+	addressBin left;
+	addressBin right;
+	} ElmBinTree;
+
+
+typedef struct {
+	  addressBin rootBin;
+} BinTree;
+
+void transformToBin(Tree L, BinTree *B);
+addressBin AlokasiBin (infotype nama);
+void CreateBTree (BinTree * L);
+void preOrder(addressBin B);
+//void insBTree(BinTree * L, infotype nama);
+
+//kamus data queue
+typedef struct tElmQueue *addressQueue;
+typedef struct tElmQueue{
+	address infoQ;
+	addressQueue next;
+}ElmQueue;
+
+typedef struct {
+	addressQueue First;
+	addressQueue Rear;
+} ListQ;
+
+boolean ListEmpty (ListQ L);
+void CreateList (ListQ * L);
+addressQueue AlokasiQ (address X);
+void DeAlokasi (addressQueue P);
+void Enqueue (ListQ * L, address X);
+void DelQueue (ListQ * L, addressQueue *P);
+void PrintInfo (ListQ L);
+
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

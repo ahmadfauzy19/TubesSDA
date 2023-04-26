@@ -37,8 +37,9 @@ address Alokasi (infotype nama){
 
 
 void insTree(Tree *L, infotype X){ 
-	address newnode, temp, parent_node;
+	address newnode, temp, parent_node,root;
 	infotype parent;
+	root=Head(*L);
 	newnode = Alokasi (X); //menampung alokasi node ke newnode
 	if(newnode == Nil){
 		printf("Alokasi gagal\n");
@@ -47,7 +48,7 @@ void insTree(Tree *L, infotype X){
 	if(Head(*L) != Nil){ //cek tree sudah ada root atau belum
 		for(;;){
 			printf("## Daftar yang bisa dijadikan Parent ## \n");
-//			PreOrder(L);
+			PreOrder(L,root);
 			parent = (STRING) malloc(10 * sizeof(char)); //alokasi tempat untuk parent
 			printf("\nMasukkan parent: ");
 			scanf("%10s", parent);
@@ -99,7 +100,11 @@ address Search(address P, infotype item){
 	return Nil; //jika tidak ketemu mengembalikan nilai Nil
 }
 
-void PreOrder(Tree P, address root){
+void PreOrder(Tree *P, address root){
+	if(IsEmpty(*P)==true){
+		printf("tree kosong...\n");
+		return;
+	}
 	if (root!=NULL){
 		printf("%s ", root->info);
 		PreOrder(P,root->fs);
@@ -135,6 +140,113 @@ void PreOrder(Tree P, address root){
 //	}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
 }
 
+
+
+// List Queue
+boolean ListEmpty (ListQ L){
+	 return (L.First == Nil);
+}
+
+void CreateList (ListQ * L){
+	First(*L) = NULL;
+	Rear(*L) = NULL;
+}
+
+addressQueue AlokasiQ (address X){
+	/* Kamus Lokal */
+	addressQueue P;
+	/* Algoritma */
+	P = (addressQueue) malloc (sizeof (ElmQueue));
+	if (P != Nil){ 	/* Alokasi berhasil */
+		P->infoQ = X;
+		P->next = Nil;
+	}
+	return (P);
+}
+
+void DeAlokasi (addressQueue P){
+	if (P != Nil){
+	free (P);
+	}
+}
+
+void Enqueue (ListQ * L, address X)
+/* IS : L mungkin Kosong */
+/* FS : melakukan alokasi sebuah elemen dan */
+/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+{
+	 /* Kamus Lokal */
+	addressQueue P;
+	 /* Aloritma */
+	P = AlokasiQ (X);
+	if (P != Nil){
+		printf("alokasi berhasil \n");
+		if((*L).First==Nil){ //belum ada root
+			P->next = Nil;	
+			L->First = P;
+			L->Rear= P;
+		}else{
+			P->next = Nil;	
+			L->Rear = P;
+		}
+	}
+}
+
+void DelQueue (ListQ * L, addressQueue * P)
+/* IS : L TIDAK Kosong */
+/* FS : Elemen terakhir list dihapus : nilai info disimpan pada X */
+/* 	dan alamat elemen terakhir di dealokasi */
+{
+	address X;
+	 /* Kamus Lokal */
+	addressQueue PDel;
+	 /* Algoritma */
+	PDel = First(*L);
+	X = PDel->infoQ;
+	if (Next(PDel)==Nil) /* Hanya 1 elemen */
+	{	
+		First(*L) = Nil;
+		Rear(*L) = Nil;
+	}else {	/* List Lebih dari 1 elemen */	
+		First(*L) = Next(First(*L));	
+	}
+	DeAlokasi (PDel);
+}
+
+
+
+
+
+//void LevelOrderTraversal(Tree L) {
+//    ListQ Q;
+//    address curr;
+//    addressQueue current;
+//    if (IsEmpty(L)) {
+//        printf("tree kosong...");
+//        return;
+//    }
+//    curr = Head(L);
+//    CreateList(&Q);
+//    Enqueue(&Q, Info(curr));
+//    while (!ListEmpty(Q)) {
+//        current = Dequeue(&Q);
+//        printf(" %s ", Info(curr));
+//        if (Fs(curr) != Nil) {
+//            Enqueue(&Q, Fs(curr));
+//            address sibling = Nb(Fs(curr));
+//            while (sibling != Nil) {
+//                Enqueue(&Q, sibling);
+//                sibling = Nb(sibling);
+//            }
+//        }
+//    }
+//}
+
+//tranformasi non binary ke binary
+void CreateBTree (BinTree * L){
+	(*L).rootBin = Nil;
+}
+
 addressBin AlokasiBin (infotype nama){
 	 /* Kamus Lokal */
 	addressBin P;
@@ -145,6 +257,7 @@ addressBin AlokasiBin (infotype nama){
 		P->infoB = nama;
 		P->left = Nil;
 		P->right = Nil;
+		printf("alokasi binary berhasil..");
 	}else{
 		printf("alokasi gagal");
 		return Nil;
@@ -152,90 +265,135 @@ addressBin AlokasiBin (infotype nama){
 	return (P);
 }
 
-void transformToBin(Tree L, BinTree *B, address root){
-//	addressBin , parent, brother;
-	if(!IsEmpty(L)){
-//		address curr= Head(*L);
-//		boolean Resmi = true;
-//		printf(" %s",Info(curr));
-//		P = AlokasiBin(Info(curr));
-//		if(Fs(curr) != Nil) {
-//			curr=Fs(curr);
-//			printf(" %s",Info(curr));
-//			parent = (addressBin) malloc (sizeof (ElmBinTree));
-//			parent = P;
-//			P = AlokasiBin(Info(curr));
-//			temp->left = P; 
-//			free(P);
-//			free(parent);
-//			Resmi=true;
-//		} else {
-//			return;
-//		}
-//		do{
-//			if(Fs(curr) != Nil && Resmi==true){
-//				curr=Fs(curr);
-//				printf(" %s",Info(curr));
-//				parent = (addressBin) malloc (sizeof (ElmBinTree));
-//				parent = P;
-//				P = AlokasiBin(Info(curr));
-//				parent->left = P; 
-//				free(P);
-////				free(temp);
-//				Resmi=true;
-//			}else if(Nb(curr) != Nil){
-//				curr=Nb(curr);
-//				printf(" %s",Info(curr));
-//				P = AlokasiBin(Info(curr));
-//				temp->right = P;
-//				temp = P;
-//				free(P);
-//				Resmi=true;
-//			}else{
-//				curr=Pr(curr);
-//				Resmi=false;
+
+//void insBTree(BinTree * L, infotype nama){
+//	addressBin newnode;
+//	newnode = AlokasiBin (nama);
+//	if(newnode == Nil){
+//		printf("Alokasi gagal..");
+//		return;
+//	}
+//	if(((*L).rootBin != Nil)){
+//		
+//	}
+//}
+
+
+void transformToBin(Tree L, BinTree *B){
+	address curr,temp; 
+	int cek=0;
+	addressBin nodeBin, currBin;
+	ListQ queue;
+	addressQueue Awal;
+	infotype item;
+	if(IsEmpty(L)==true){
+		printf("tree kosong...\n");
+		return;
+	}
+	curr = Head(L);
+	CreateBTree (B);
+	CreateList (&queue);
+	Enqueue (&queue, curr);
+	Awal = First(queue);
+	curr = InfoQ(Awal);
+	while(curr != Nil){
+		printf(" loop ke %d \n",cek++);
+//		if(B->rootBin!=Nil){
+			if(Fs(curr)!=Nil){ //mempunyai first son
+				printf("cek fs \n");
+				printf(" loop fs ke %d \n",cek);
+				curr = Fs(curr);
+				Enqueue (&queue, curr);
+//				nodeBin = AlokasiBin (queue.Rear->infoQ->info);
+//				currBin->left=nodeBin;
+//				DelQueue (&queue,  &Awal);
+				printf("cek aja \n");
+				if(Nb(curr) != Nil){ // mempunyai next brother
+					printf(" loop nb ke %d \n",cek);
+					printf("cek nb \n");
+					temp = Nb(curr);
+					while(temp != Nil){
+						Enqueue (&queue, temp );
+						temp = Nb(temp);
+					}
+//					nodeBin = AlokasiBin (queue.Rear->infoQ->info);
+//					currBin->right=nodeBin;
+//					DelQueue (&queue,  &Awal);
+				}
+			}
+			PrintInfo (queue);
+			printf("%s",Awal->infoQ->info);
+			Awal = Awal->next;
+			printf("%s",Awal->infoQ->info);
+			curr = 	InfoQ(Awal);
+			printf("%s",Awal->infoQ->info);
+//		}else{
+//			printf("cek \n");
+////			nodeBin = AlokasiBin (queue.Rear->infoQ->info);
+////			B->rootBin = nodeBin;
+////			currBin = B->rootBin;
+//			Awal = queue.First;
+//			printf("root binary telah dibuat yaitu %s",B->rootBin->infoB);
+//			if(queue.First.next==Nil){
+//				DelQueue (&queue,  &Awal);
 //			}
-//		}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
-
-        addressBin P = (addressBin) malloc(sizeof(ElmBinTree));
-        P->infoB = root->info;
-        P->left = NULL;
-        P->right = NULL;
-
-        if (root->fs != NULL) {
-            // konversi tipe data dari address menjadi addressBin
-            addressBin child = (addressBin) malloc(sizeof(ElmBinTree));
-            child->infoB = root->fs->info;
-            child->left = NULL;
-            child->right = NULL;
-
-            P->left = child;
-            // rekursif memproses child pertama
-            transformToBin(L, B, root->fs);
-        }
-
-        if (root->nb != NULL) {
-            // konversi tipe data dari address menjadi addressBin
-            addressBin sibling = (addressBin) malloc(sizeof(ElmBinTree));
-            sibling->infoB = root->nb->info;
-            sibling->left = NULL;
-            sibling->right = NULL;
-
-            P->right = sibling;
-            // rekursif memproses sibling berikutnya
-            transformToBin(L, B, root->nb);
-        }
-
-        // mengubah pointer pada B menjadi P
-        (*B).pointer = P;
+//		}
 	}
-	else{
-		printf("Tree Kosong\n");
-	}
+	PrintInfo (queue);
 }
+
+//void transformToBin(Tree L, BinTree *B){
+//    address curr,temp;
+//    addressBin nodeBin, currBin;
+//    ListQ queue;
+//    addressQueue Awal;
+//    infotype item;
+//    if(IsEmpty(L)==true){
+//        printf("tree kosong...\n");
+//        return;
+//    }
+//    curr = Head(L);
+//    CreateBTree(B);
+//    CreateList(&queue);
+//    Enqueue(&queue, curr);
+//    while(ListEmpty(queue) != Nil){
+//    	Awal = queue.First;	
+//        temp = queue.First->infoQ;
+//        DelQueue(&queue,&Awal);
+//        if(B->rootBin == Nil){
+//            nodeBin = AlokasiBin(Info(temp));
+//            B->rootBin = nodeBin;
+//            currBin = B->rootBin;
+//            Awal = queue.First;
+//        }
+//        else{
+//            if(Fs(temp) != Nil){ //mempunyai first son
+//                curr = Fs(temp);
+//                Enqueue(&queue, curr);
+//                nodeBin = AlokasiBin(Info(curr));
+//                currBin->left = nodeBin;
+//                currBin = nodeBin;
+//                if(Nb(curr) != Nil){ // mempunyai next brother
+//                    curr = Nb(curr);
+//                    while(curr != Nil){
+//                        Enqueue(&queue, curr);
+//                        nodeBin = AlokasiBin(Info(curr));
+//                        currBin->right = nodeBin;
+//                        currBin = nodeBin;
+//                        curr = Nb(curr);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    printf("periksa preorder bin tree\n");
+//    preOrder(B->rootBin);
+//}
+
 
 void preOrder(addressBin B) {
     if (B == NULL){
+    	printf("binary tree kosong...");
         return;
     }
     printf("%s ", B->infoB);
@@ -243,6 +401,36 @@ void preOrder(addressBin B) {
     preOrder(B->right);
 }
 
-
+void PrintInfo (ListQ L)
+/* IS : L mungkin kosong */
+/* FS : Jika List tidak kosong, semua info yang disimpan pada elemen list */
+/*	diprint. Jika list kosong, hanya menuliskan "List Kosong" */
+{
+	 /* Kamus Lokal */
+	addressQueue P;
+	 /* Algoritma */
+	if (First(L) == Nil)
+	{
+		 printf ("List Kosong .... \a\n");
+	}
+	else	/* List memiliki elemen */
+	{
+		 P = First(L);
+		 for (;;)
+		 {
+		if (P==Nil)
+		{
+			
+			 printf("berakhir \n");
+			 break;
+		}
+		else	/* Belum berada di akhir List */
+		{
+			 printf ("%s ", P->infoQ->info);
+			 P = Next(P);
+		}
+		 }
+	}
+}
 
 
