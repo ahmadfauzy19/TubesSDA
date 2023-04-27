@@ -99,12 +99,12 @@ address Search(address P, infotype item){
 	return Nil; //jika tidak ketemu mengembalikan nilai Nil
 }
 
-void nbPreOrder(address root){
-	if (root!=NULL){
-		printf("%s ", root->info);
-		nbPreOrder(root->fs);
-		nbPreOrder(root->nb);
-	}
+//void nbPreOrder(address root){
+//	if (root!=NULL){
+//		printf("%s ", root->info);
+//		nbPreOrder(root->fs);
+//		nbPreOrder(root->nb);
+//	}
 //		address curr= Head(*L);
 //		boolean Resmi = true;
 //		if(IsEmpty(*L)==true){
@@ -171,14 +171,61 @@ addressBin transformToBin(address nbRoot){
     return bRoot;
 }
 
-void bPreOrder(addressBin B) {
-    if (B == NULL){
-        return;
-    }
-    printf("%s ", B->infoB);
-    bPreOrder(B->left);
-    bPreOrder(B->right);
-}
+//binary tree
+	void bPreOrder(addressBin root) {
+	    if (root == NULL){
+	        return;
+	    }
+	    printf("%s ", root->infoB);
+	    preOrder(root->left);
+	    preOrder(root->right);
+	}
+	
+	void bPostOrder(addressBin root) {
+	    if (root == NULL) {
+	        return;
+	    }
+	    postOrder(root->left);
+	    postOrder(root->right);
+	    printf("%s ", root->infoB);
+	}
+	
+	void bInOrder(addressBin root) {
+	    if (root == NULL) {
+	        return;
+	    }
+	    inOrder(root->left);
+	    printf("%s ", root->infoB);
+	    inOrder(root->right);
+	}
+	
+//non-binary tree
+	void nbPreOrder(address root){
+		if (root == NULL) {
+	        return;
+	    }
+		printf("%s ", root->info);
+		nbPreOrder(root->fs);
+		nbPreOrder(root->nb);
+	}
+	
+	void nbInOrder(address root){
+		if (root == NULL) {
+	        return;
+	    }
+		nbInOrder(root->fs);
+		printf("%s ", root->info);
+		nbInOrder(root->nb);
+	}
+	
+	void nbPostOrder(address root){
+		if (root == NULL) {
+	        return;
+	    }
+		nbPostOrder(root->fs);
+		nbPostOrder(root->nb);
+		printf("%s ", root->info);
+	}
 
 
 
