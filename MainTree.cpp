@@ -62,11 +62,42 @@ int main(){
 				}else{
 					bPreOrder(rootBin);
 				}
+				printf("\n");
 				system("pause");
 				break;
 			case 3:
+				printf("\nPost Order Non Binary Tree : ");
+				nbRoot = Mytree.head;
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					nbPostOrder(nbRoot);
+				}
+				printf("\n\nPost Order Binary Tree : ");
+				if(rootBin==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bPostOrder(rootBin);
+				}
+				printf("\n");
+				system("pause");
 				break;
 			case 4:
+				printf("\nIn Order Non Binary Tree : ");
+				nbRoot = Mytree.head;
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					nbInOrder(nbRoot);
+				}
+				printf("\n\nIn Order Binary Tree : ");
+				if(rootBin==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bInOrder(rootBin);
+				}
+				printf("\n");
+				system("pause");
 				break;
 			case 5:
 				break;

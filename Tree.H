@@ -58,7 +58,6 @@ typedef struct {
 //Adrian
 addressBin transformToBin(address nbRoot);
 addressBin AlokasiBin (infotype nama);
-void bPreOrder(addressBin B);
 /*********** PROTOTYPE ****************/
 /**** Predikat untuk test keadaan Tree ****/
 boolean IsEmpty (Tree L);
@@ -80,7 +79,12 @@ void insTree(Tree *L, infotype X);
 
 address Search(address P, infotype item);
 
+void bPreOrder(addressBin root);
+void bInOrder(addressBin root);
+void bPostOrder(addressBin root);
 void nbPreOrder(address root);
+void nbInOrder(address root);
+void nbPostOrder(address root);
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

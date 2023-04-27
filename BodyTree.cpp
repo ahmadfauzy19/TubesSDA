@@ -133,7 +133,7 @@ address Search(address P, infotype item){
 //				Resmi=false;
 //			}
 //		}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
-}
+//}
 
 addressBin AlokasiBin (infotype nama){
 	 /* Kamus Lokal */
@@ -172,60 +172,69 @@ addressBin transformToBin(address nbRoot){
 }
 
 //binary tree
-	void bPreOrder(addressBin root) {
-	    if (root == NULL){
-	        return;
-	    }
-	    printf("%s ", root->infoB);
-	    preOrder(root->left);
-	    preOrder(root->right);
+void bPreOrder(addressBin root) {
+	if (root == NULL){
+	    return;
 	}
+	printf("%s ", root->infoB);
+	bPreOrder(root->left);
+	bPreOrder(root->right);
+}
+
+void bPostOrder(addressBin root) {
+	if (root == NULL) {
+	    return;
+	}
+	bPostOrder(root->left);
+	bPostOrder(root->right);
+	printf("%s ", root->infoB);
+}
 	
-	void bPostOrder(addressBin root) {
-	    if (root == NULL) {
-	        return;
-	    }
-	    postOrder(root->left);
-	    postOrder(root->right);
-	    printf("%s ", root->infoB);
+void bInOrder(addressBin root) {
+	if (root == NULL) {
+	    return;
 	}
-	
-	void bInOrder(addressBin root) {
-	    if (root == NULL) {
-	        return;
-	    }
-	    inOrder(root->left);
-	    printf("%s ", root->infoB);
-	    inOrder(root->right);
-	}
+	bInOrder(root->left);
+	printf("%s ", root->infoB);
+	bInOrder(root->right);
+}
 	
 //non-binary tree
-	void nbPreOrder(address root){
-		if (root == NULL) {
-	        return;
-	    }
-		printf("%s ", root->info);
-		nbPreOrder(root->fs);
-		nbPreOrder(root->nb);
+void nbPreOrder(address root){
+	if (root == NULL) {
+	    return;
 	}
+	printf("%s ", root->info);
+	nbPreOrder(root->fs);
+	nbPreOrder(root->nb);
+}
 	
-	void nbInOrder(address root){
-		if (root == NULL) {
-	        return;
-	    }
-		nbInOrder(root->fs);
-		printf("%s ", root->info);
-		nbInOrder(root->nb);
-	}
+void nbInOrder(address root) {
+	if (root == NULL) {
+        return;
+    }
+    
+    nbInOrder(root->fs);
+    printf("%s ", root->info);
+    address pcur = root->nb;
+    while (pcur != NULL) {
+        nbInOrder(pcur->fs);
+        printf("%s ", pcur->info);
+        pcur = pcur->nb;
+    }
+}
 	
-	void nbPostOrder(address root){
-		if (root == NULL) {
-	        return;
-	    }
-		nbPostOrder(root->fs);
-		nbPostOrder(root->nb);
-		printf("%s ", root->info);
+void nbPostOrder(address root) {
+	if (root == NULL) {
+	    return;
 	}
+	address pcur = root->fs;
+	while (pcur != NULL) {
+	    nbPostOrder(pcur);
+	    pcur = pcur->nb;
+	}
+	printf("%s ", root->info);
+}
 
 
 
