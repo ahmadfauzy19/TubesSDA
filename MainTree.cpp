@@ -11,7 +11,7 @@ int main(){
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama,buku;
-	int pilihan;
+	int pilihan, i;
 	char ask;
 		
 	/* Program */
@@ -100,6 +100,17 @@ int main(){
 				system("pause");
 				break;
 			case 5:
+				printf("\nLevel Order Non Binary Tree : ");
+				nbRoot = Mytree.head;
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					for(i=0; i<=nbDepth(nbRoot); i++){
+						nbLevelOrder(nbRoot,0,i);
+					}
+				}
+				printf("\n");
+				system("pause");
 				break;
 			case 6:
 				printf("Transform ke binary ...\n");

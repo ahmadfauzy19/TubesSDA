@@ -85,6 +85,8 @@ void bPostOrder(addressBin root);
 void nbPreOrder(address root);
 void nbInOrder(address root);
 void nbPostOrder(address root);
+void nbLevelOrder(address root, int curLevel, int desLevel);
+int nbDepth(address root);
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

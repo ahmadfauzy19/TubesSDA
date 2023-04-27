@@ -236,5 +236,42 @@ void nbPostOrder(address root) {
 	printf("%s ", root->info);
 }
 
+void nbLevelOrder(address root, int curLevel, int desLevel) {
+    if (root == NULL) {
+        return;
+    }
+    
+    if (curLevel == desLevel) {
+        printf("%s ", root->info);
+        return;
+    }
+    
+    address pcur = root->fs;
+    while (pcur != NULL) {
+        nbLevelOrder(pcur, curLevel + 1, desLevel);
+        pcur = pcur->nb;
+    }
+}
+
+int nbDepth(address root){
+	int maxDepth = 0, currentDepth = 0;
+	address currentNode;
+	
+	if (root == NULL) {
+        return 0;
+    }
+    
+    currentNode = root->fs;
+    while (currentNode != NULL) {
+        currentDepth = nbDepth(currentNode);
+        if (currentDepth > maxDepth) {
+            maxDepth = currentDepth;
+        }
+        currentNode = currentNode->nb;
+    }
+    return maxDepth + 1;	// saat print depth tree di main kurangi 1
+}
+
+
 
 
