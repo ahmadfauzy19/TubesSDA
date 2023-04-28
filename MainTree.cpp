@@ -6,16 +6,12 @@
 
 int main(){
 	/* Kamus Lokal */
-<<<<<<< HEAD
-	address P,Q, Pre;
-=======
 	address P,*Q, nbRoot = NULL;
 	addressBin rootBin = NULL;
->>>>>>> 140138136719b682505eafb85527c48ba46cb144
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama,buku;
-	int pilihan, currlevel,deslevel;
+	int pilihan, i;
 	char ask;
 		
 	/* Program */
@@ -37,14 +33,9 @@ int main(){
 				do{
 					system("cls");
 					printf("**tampilan preorder **\n");
-<<<<<<< HEAD
-					Q=Mytree.head;
-					PreOrder(&Mytree, Q);
-=======
 					nbRoot = Mytree.head;
 					nbPreOrder(nbRoot);
 					Q=&Mytree.head;
->>>>>>> 140138136719b682505eafb85527c48ba46cb144
 					nama=(STRING)malloc(10*sizeof(char));
 					printf("\nmasukan nama :");scanf("%s", nama);
 					P=Search(Head(Mytree), nama);
@@ -58,10 +49,6 @@ int main(){
 				}while(ask == 'y' || ask == 'Y');
 				break;
 			case 2:
-<<<<<<< HEAD
-				Pre = Mytree.head;
-				PreOrder(&Mytree, Pre);
-=======
 				printf("\nPre Order Non Binary Tree : ");
 				nbRoot = Mytree.head;
 				if(nbRoot==NULL){
@@ -75,28 +62,61 @@ int main(){
 				}else{
 					bPreOrder(rootBin);
 				}
+				printf("\n");
 				system("pause");
->>>>>>> 140138136719b682505eafb85527c48ba46cb144
 				break;
 			case 3:
+				printf("\nPost Order Non Binary Tree : ");
+				nbRoot = Mytree.head;
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					nbPostOrder(nbRoot);
+				}
+				printf("\n\nPost Order Binary Tree : ");
+				if(rootBin==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bPostOrder(rootBin);
+				}
+				printf("\n");
+				system("pause");
 				break;
 			case 4:
+				printf("\nIn Order Non Binary Tree : ");
+				nbRoot = Mytree.head;
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					nbInOrder(nbRoot);
+				}
+				printf("\n\nIn Order Binary Tree : ");
+				if(rootBin==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bInOrder(rootBin);
+				}
+				printf("\n");
+				system("pause");
 				break;
 			case 5:
-//				LevelOrderTraversal(Mytree);
+				printf("\nLevel Order Non Binary Tree : ");
+				nbRoot = Mytree.head;
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					for(i=0; i<=nbDepth(nbRoot); i++){
+						nbLevelOrder(nbRoot,0,i);
+					}
+				}
+				printf("\n");
+				system("pause");
 				break;
 			case 6:
 				printf("Transform ke binary ...\n");
-//				Pre = Mytree.head;
-<<<<<<< HEAD
-				transformToBin(Mytree, &Btree);
-//				preOrder(Btree.pointer);
-//				system("Pause");
-=======
 				nbRoot = Mytree.head;
 				rootBin = transformToBin(nbRoot);
 				system("Pause");
->>>>>>> 140138136719b682505eafb85527c48ba46cb144
 				break;
 			case 7:
 				break;
