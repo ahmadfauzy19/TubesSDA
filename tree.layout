@@ -1,7 +1,7 @@
 [Editors]
 <<<<<<< HEAD
-Order=0,2,3,1,4,5
-Focused=5
+Order=0,2,3,4,5,1
+Focused=1
 =======
 Order=0,2,3,1
 Focused=1
@@ -14,8 +14,8 @@ LeftChar=1
 [Editor_1]
 <<<<<<< HEAD
 CursorCol=1
-CursorRow=2
-TopLine=1
+CursorRow=137
+TopLine=73
 LeftChar=1
 [Editor_2]
 CursorCol=41
@@ -36,7 +36,7 @@ LeftChar=1
 CursorCol=11
 CursorRow=55
 <<<<<<< HEAD
-TopLine=1
+TopLine=4
 LeftChar=1
 [Editor_4]
 CursorCol=20
