@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = BodyTree.o MainTree.o TransformToBin.o Traversal.o
-LINKOBJ  = BodyTree.o MainTree.o TransformToBin.o Traversal.o
+OBJ      = BodyTree.o MainTree.o TransformToBin.o Traversal.o UI.o
+LINKOBJ  = BodyTree.o MainTree.o TransformToBin.o Traversal.o UI.o
 LIBS     = -L"D:/Dev-Cpp/MinGW64/lib" -L"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"D:/Dev-Cpp/MinGW64/include" -I"D:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -35,3 +35,6 @@ TransformToBin.o: TransformToBin.cpp
 
 Traversal.o: Traversal.cpp
 	$(CPP) -c Traversal.cpp -o Traversal.o $(CXXFLAGS)
+
+UI.o: UI.cpp
+	$(CPP) -c UI.cpp -o UI.o $(CXXFLAGS)

@@ -60,7 +60,7 @@ addressBin transformToBin(address nbRoot);
 addressBin AlokasiBin (infotype nama);
 /*********** PROTOTYPE ****************/
 /**** Predikat untuk test keadaan Tree ****/
-boolean IsEmpty (Tree L);
+bool IsEmpty (Tree L);
 /* Mengirim true jika List Kosong */
 
 /**** Konstruktor/Kreator List Kosong ****/

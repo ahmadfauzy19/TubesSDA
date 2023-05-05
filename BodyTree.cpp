@@ -9,7 +9,7 @@ void CreateTree (Tree * L){ //membuat tree baru
 	 Head(*L) = Nil;
 }
 
-boolean IsEmpty (Tree L){
+bool IsEmpty (Tree L){
 	if(Head(L)==Nil){
 		return true;
 	}else{

@@ -1,4 +1,5 @@
 #include "Tree.h"
+#include "UI.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -15,6 +16,7 @@ int main(){
 	char ask;
 		
 	/* Program */
+	splashScreen();
 	CreateTree (&Mytree);
 	do{
 		system("cls");
@@ -26,6 +28,7 @@ int main(){
 		printf(" 5. Level Order\n");
 		printf(" 6. Transform to Binary\n");
 		printf(" 7. AVL\n");
+		printf(" 8. Print Tree\n");
 		printf(" 9. Exit\n");
 		printf("masukan pilihan :");scanf("%d",&pilihan);
 		switch(pilihan){
@@ -50,7 +53,6 @@ int main(){
 				break;
 			case 2:
 				printf("\nPre Order Non Binary Tree : ");
-				nbRoot = Mytree.head;
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
@@ -67,7 +69,6 @@ int main(){
 				break;
 			case 3:
 				printf("\nPost Order Non Binary Tree : ");
-				nbRoot = Mytree.head;
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
@@ -84,7 +85,6 @@ int main(){
 				break;
 			case 4:
 				printf("\nIn Order Non Binary Tree : ");
-				nbRoot = Mytree.head;
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
@@ -101,7 +101,6 @@ int main(){
 				break;
 			case 5:
 				printf("\nLevel Order Non Binary Tree : ");
-				nbRoot = Mytree.head;
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
@@ -114,13 +113,27 @@ int main(){
 				break;
 			case 6:
 				printf("Transform ke binary ...\n");
-				nbRoot = Mytree.head;
 				rootBin = transformToBin(nbRoot);
 				system("Pause");
 				break;
 			case 7:
 				break;
 			case 8:
+				system("cls");
+				char tab[]="";
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf("Print Tree : \nNon Binary Tree :\n ");
+					nbPrintTree(nbRoot, tab); 
+				}
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf("Binary Tree : \n+: Kanan, -Kiri\n ");
+					bPrintTree(rootBin, tab, -1);
+				}
+				system("pause");
 				break;
 		}
 	}while(pilihan != 9);
