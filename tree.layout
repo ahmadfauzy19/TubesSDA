@@ -1,7 +1,7 @@
 [Editors]
 <<<<<<< HEAD
 Order=0,2,3,4,5,1,6,7
-Focused=2
+Focused=5
 =======
 Order=0,2,3,1
 Focused=1
@@ -20,7 +20,7 @@ LeftChar=1
 [Editor_2]
 CursorCol=48
 CursorRow=133
-TopLine=121
+TopLine=104
 =======
 CursorCol=32
 CursorRow=244
@@ -46,7 +46,7 @@ LeftChar=1
 [Editor_5]
 CursorCol=1
 CursorRow=57
-TopLine=36
+TopLine=67
 =======
 TopLine=63
 >>>>>>> 4c843563472217fa1a66144f47a2d6199412d185
@@ -54,7 +54,7 @@ LeftChar=1
 [Editor_6]
 CursorCol=33
 CursorRow=107
-TopLine=91
+TopLine=1
 LeftChar=1
 [Editor_7]
 CursorCol=1

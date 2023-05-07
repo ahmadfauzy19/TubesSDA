@@ -100,3 +100,29 @@ void bInOrder(addressBin root) {
 	printf("%s ", root->infoB);
 	bInOrder(root->right);
 }
+
+void bLevelOrder(addressBin root, int level) {
+    if (root == NULL) {
+        return;
+    }
+    if (level == 1) {
+        printf("%s ", root->infoB);
+    } else if (level > 1) {
+        bLevelOrder(root->left, level - 1);
+        bLevelOrder(root->right, level - 1);
+    }
+}
+
+int bDepth(addressBin root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        int ldepth = bDepth(root->left);
+        int rdepth = bDepth(root->right);
+        if (ldepth > rdepth) {
+            return (ldepth + 1);
+        } else {
+            return (rdepth + 1);
+        }
+    }
+}
