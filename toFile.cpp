@@ -19,21 +19,21 @@ void serializeTree(address root, FILE *fp) {
 int deSerializeTree(address &root, FILE *fp) {
     // Read next item from file
     char* val = new char[MAX_LINE_LENGTH];
-    if (fscanf(fp, "%s", val) == 0) {
-        return 1;
-    }
-
-    // If next item is "NULL", then return 1 to indicate same
-    if (strcmp(val, "NULL") == 0) {
-        root = NULL;
-        return 1;
-    }
-
-    // Create node with this item and recur for its children
-    root = Alokasi(val);
-    deSerializeTree(root->fs, fp);
-    deSerializeTree(root->nb, fp);
-
-    // Finally return 0 for successful finish
-    return 0;
+	if (fscanf(fp, "%s", val) == 0) {
+	    return 1;
+	}
+	
+	// If next item is "NULL", then return 1 to indicate same
+	if (strcmp(val, "NULL") == 0) {
+	    root = NULL;
+	    return 1;
+	}
+	
+	// Create node with this item and recur for its children
+	root = Alokasi(val);
+	deSerializeTree(root->fs, fp);
+	deSerializeTree(root->nb, fp);
+	
+	// Finally return 0 for successful finish
+	return 0;	
 }

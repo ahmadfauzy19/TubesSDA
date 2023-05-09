@@ -1,14 +1,8 @@
-/* File        : spNRSLL.h */
-/* Deskripsi   : ADT list berkait dengan representasi fisik pointer */
-/*		 Representasi address dengan pointer */
-/*		 InfoType adalah integer */
-/* Dibuat oleh : Ade Chandra Nugraha */
-/* Tanggal     : 24-10-2001 */
-
 #ifndef Tree_H
 #define Tree_H
 #include "boolean.h"
 #include <stdio.h>
+#include <stdlib.h>
 #define Nil NULL
 #define Info(P) (P)->info
 #define Nb(L) (L)->nb
@@ -17,16 +11,12 @@
 #define Head(P) (P).head
 #define Pointer(P) (P).pointer
 #define STRING char*
-//typedef struct telmTree *address;
-//typedef struct telmTree {
-//    infotype info;
-//    address fs;
-//    address nb;
-//} ElmTree;
-//
-//typedef struct {
-//    address head;
-//} Tree;
+
+#ifdef WIN32
+#include <io.h>
+#define F_OK 0
+#define access _access
+#endif
 
 typedef STRING infotype;
 typedef struct tElmTree *address;

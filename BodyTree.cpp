@@ -3,8 +3,6 @@
 #include "tree.h"
 #include <string.h>
 
-
-
 void CreateTree (Tree * L){ //membuat tree baru
 	 Head(*L) = Nil;
 }
@@ -78,9 +76,6 @@ void insTree(Tree *L, infotype X){
 	}
 }
 
-
-
-
 address Search(address P, infotype item){
 	address search;
 	
@@ -98,42 +93,4 @@ address Search(address P, infotype item){
 	}
 	return Nil; //jika tidak ketemu mengembalikan nilai Nil
 }
-
-//void nbPreOrder(address root){
-//	if (root!=NULL){
-//		printf("%s ", root->info);
-//		nbPreOrder(root->fs);
-//		nbPreOrder(root->nb);
-//	}
-//		address curr= Head(*L);
-//		boolean Resmi = true;
-//		if(IsEmpty(*L)==true){
-//			printf("tree kosong...\n");
-//			return;
-//		}
-//		printf(" %s",Info(curr));
-//		if(Fs(curr) != Nil) {
-//			curr=Fs(curr);
-//			printf(" %s",Info(curr));
-//			Resmi=true;
-//		} else {
-//			return;
-//		}
-//		do{
-//			if(Fs(curr) != Nil && Resmi==true){
-//				curr=Fs(curr);
-//				printf(" %s",Info(curr));
-//				Resmi=true;
-//			}else if(Nb(curr) != Nil){
-//				curr=Nb(curr);
-//				printf(" %s",Info(curr));
-//				Resmi=true;
-//			}else{
-//				curr=Pr(curr);
-//				Resmi=false;
-//			}
-//		}while(Pr(curr)!=Nil || Nb(curr)!=Nil);
-//}
-
-
 

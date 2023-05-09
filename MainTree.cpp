@@ -12,10 +12,10 @@ int main(){
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama,buku;
-//	FILE* fp = fopen("tree.txt", "w");
 	int pilihan, i;
 	char ask;
 	char tab[]="";
+	
 	/* Program */
 	splashScreen();
 	CreateTree (&Mytree);
@@ -38,10 +38,12 @@ int main(){
 				do{
 					system("cls");
 					printf("**tampilan preorder **\n");
-					nbRoot = Mytree.head;
-					//nbRoot = deserializeTree();
+					if (nbRoot == Nil){
+						nbRoot = Mytree.head;
+					}else{
+						Mytree.head = nbRoot;
+					}
 					nbPreOrder(nbRoot);
-					Q=&Mytree.head;
 					nama=(STRING)malloc(10*sizeof(char));
 					printf("\nmasukan nama :");scanf("%s", nama);
 					P=Search(Head(Mytree), nama);
@@ -114,6 +116,14 @@ int main(){
 						nbLevelOrder(nbRoot,0,i);
 					}
 				}
+				printf("\nLevel Order Binary Tree : ");
+				if(rootBin==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					for(i=0; i<=bDepth(rootBin); i++){
+						bLevelOrder(rootBin,i);
+					}
+				}
 				printf("\n");
 				system("pause");
 				break;
@@ -142,9 +152,13 @@ int main(){
 				break;
 			case 9:
 				FILE *fp = fopen("tree.txt", "r");
-			    deSerializeTree(nbRoot, fp);
-			    fclose(fp);
-			    printf("Load Tree Berhasil");
+				if (access("tree.txt", F_OK) == 0){
+				    deSerializeTree(nbRoot, fp);
+				    fclose(fp);
+				    printf("Load Tree Berhasil\n");
+				}else{
+					printf("File tidak ditemukan\n");
+				}
 			    system("pause");
 				break;
 		}
