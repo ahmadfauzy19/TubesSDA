@@ -12,9 +12,10 @@ int main(){
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama,buku;
+//	FILE* fp = fopen("tree.txt", "w");
 	int pilihan, i;
 	char ask;
-		
+	char tab[]="";
 	/* Program */
 	splashScreen();
 	CreateTree (&Mytree);
@@ -29,7 +30,8 @@ int main(){
 		printf(" 6. Transform to Binary\n");
 		printf(" 7. AVL\n");
 		printf(" 8. Print Tree\n");
-		printf(" 9. Exit\n");
+		printf(" 9. Load Tree\n");
+		printf(" 10. Exit\n");
 		printf("masukan pilihan :");scanf("%d",&pilihan);
 		switch(pilihan){
 			case 1:
@@ -48,7 +50,9 @@ int main(){
 					}else{
 						printf("nama sudah ada\n");
 					}
-					serializeTree(nbRoot);
+					FILE* fp = fopen("tree.txt", "w");
+					serializeTree(nbRoot, fp);
+					fclose(fp);
 					getchar();
 					printf("apakah ingin insert lagi (y/n) ?");scanf("%c",&ask);
 				}while(ask == 'y' || ask == 'Y');
@@ -122,7 +126,6 @@ int main(){
 				break;
 			case 8:
 				system("cls");
-				char tab[]="";
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
@@ -137,8 +140,15 @@ int main(){
 				}
 				system("pause");
 				break;
+			case 9:
+				FILE *fp = fopen("tree.txt", "r");
+			    deSerializeTree(nbRoot, fp);
+			    fclose(fp);
+			    printf("Load Tree Berhasil");
+			    system("pause");
+				break;
 		}
-	}while(pilihan != 9);
+	}while(pilihan != 10);
 	 
 	return 0;
 }

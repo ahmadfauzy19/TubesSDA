@@ -90,8 +90,8 @@ int nbDepth(address root);
 void bLevelOrder(addressBin root, int level);
 int bDepth(addressBin root);
 
-void serializeTree(address root);
-address deserializeTree();
+void serializeTree(address root, FILE *fp);
+int deSerializeTree(address &root, FILE *fp);
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

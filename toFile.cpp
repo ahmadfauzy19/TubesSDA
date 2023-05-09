@@ -1,52 +1,39 @@
 #include <malloc.h>
 #include "tree.h"
 #include <string.h>
+#define MAX_LINE_LENGTH 100
 
-void serializeTree(address root){
-	address curr;
-	FILE* fp = fopen("tree.txt", "a");
-	
-	if (root == NULL){
-		fprintf(fp, "null");
-		return;
-	}
-	
-	fprintf(fp, "%s ", root->info);
-	curr = root->fs;
-	while (curr != NULL){
-		serializeTree(curr);
-		curr = curr->nb;
-	}
-	fprintf(fp,"# ");
-	
-	fclose(fp);
+void serializeTree(address root, FILE *fp) {
+    // Base case
+    if (root == NULL) {
+        fprintf(fp, "%s ", "NULL");
+        return;
+    }
+
+    // Store current node and recur for its children
+    fprintf(fp, "%s ", root->info);
+    serializeTree(root->fs, fp);
+    serializeTree(root->nb, fp);
 }
 
-address deserializeTree(){
-	char str[200];
-	Tree Mytree;
-	address newNode, temp_fs, temp_nb;
-	
-	FILE* fp = fopen("tree.txt", "r");
-	fscanf(fp,"%s ", &str);
-	
-	if (str == "null"){
-		return Nil;
-	}
-	
-	newNode = Alokasi(str);
-	temp_fs = deserializeTree();
-	if(temp_fs != Nil){
-		newNode->fs = temp_fs;
-		temp_nb = temp_fs;
-		while (fscanf(fp, "%s ", &str) == 1 && str != "#"){
-			temp_nb->nb = Alokasi(str);
-			temp_nb = temp_nb->nb;
-			temp_nb->fs = deserializeTree();
-		}
-	}
-	
-	fclose(fp);
-	
-	return newNode;
+int deSerializeTree(address &root, FILE *fp) {
+    // Read next item from file
+    char* val = new char[MAX_LINE_LENGTH];
+    if (fscanf(fp, "%s", val) == 0) {
+        return 1;
+    }
+
+    // If next item is "NULL", then return 1 to indicate same
+    if (strcmp(val, "NULL") == 0) {
+        root = NULL;
+        return 1;
+    }
+
+    // Create node with this item and recur for its children
+    root = Alokasi(val);
+    deSerializeTree(root->fs, fp);
+    deSerializeTree(root->nb, fp);
+
+    // Finally return 0 for successful finish
+    return 0;
 }
