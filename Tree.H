@@ -87,6 +87,11 @@ void nbInOrder(address root);
 void nbPostOrder(address root);
 void nbLevelOrder(address root, int curLevel, int desLevel);
 int nbDepth(address root);
+void bLevelOrder(addressBin root, int level);
+int bDepth(addressBin root);
+
+void serializeTree(address root);
+address deserializeTree();
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

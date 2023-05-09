@@ -37,6 +37,7 @@ int main(){
 					system("cls");
 					printf("**tampilan preorder **\n");
 					nbRoot = Mytree.head;
+					//nbRoot = deserializeTree();
 					nbPreOrder(nbRoot);
 					Q=&Mytree.head;
 					nama=(STRING)malloc(10*sizeof(char));
@@ -47,8 +48,9 @@ int main(){
 					}else{
 						printf("nama sudah ada\n");
 					}
-				getchar();
-				printf("apakah ingin insert lagi (y/n) ?");scanf("%c",&ask);
+					serializeTree(nbRoot);
+					getchar();
+					printf("apakah ingin insert lagi (y/n) ?");scanf("%c",&ask);
 				}while(ask == 'y' || ask == 'Y');
 				break;
 			case 2:
