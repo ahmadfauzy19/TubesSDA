@@ -96,19 +96,46 @@ void nbPrintTree(address root, char tab[]){
 	}
 }
 
-void bPrintTree(addressBin root, char tab[], int isLeft){
-	if (root == NULL) {
+void showTrunks(Trunk *p)
+{
+    if (p == Nil) {
+    showTrunks(p->prev);
+    printf("%s", p->str);
+}
+
+void bPrintTree(addressBin root, Trunk *prev, bool isLeft)
+{
+    if (root == Nil) {
         return;
     }
-    char tempTab[255];
-    if(isLeft!=-1){
-		printf("%s", tab);
-	    printf(isLeft ? "|-" : "|+");
-	    snprintf(tempTab, sizeof(tempTab), "%s%s", tab, "   ");
-	}
-    printf("%s\n", root->infoB);
-    bPrintTree(root->left, tempTab, 1);
-    bPrintTree(root->right, tempTab, 0);
+
+    const char* prev_str = "    ";
+    Trunk *trunk = new Trunk(prev, prev_str);
+
+    bPrintTree(root->right, trunk, true);
+
+    if (!prev) {
+        trunk->str = "---";
+    }
+    else if (isLeft)
+    {
+        trunk->str = "#---";
+        prev_str = "   |";
+    }
+    else {
+        trunk->str = "*---";
+        prev->str = prev_str;
+    }
+
+    showTrunks(trunk);
+    printf(" %s\n", root->infoB);
+
+    if (prev) {
+        prev->str = prev_str;
+    }
+    trunk->str = "   |";
+
+    bPrintTree(root->left, trunk, false);
 }
 
 

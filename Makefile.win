@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = BodyTree.o MainTree.o TransformToBin.o Traversal.o UI.o toFile.o ../TubesSDAVer1/AVL.o ../TubesSDAVer1/BodyStack.o TampilanDanKetentuan.o
-LINKOBJ  = BodyTree.o MainTree.o TransformToBin.o Traversal.o UI.o toFile.o ../TubesSDAVer1/AVL.o ../TubesSDAVer1/BodyStack.o TampilanDanKetentuan.o
+OBJ      = BodyTree.o MainTree.o TransformToBin.o Traversal.o UI.o toFile.o AVL.o BodyStack.o TampilanDanKetentuan.o
+LINKOBJ  = BodyTree.o MainTree.o TransformToBin.o Traversal.o UI.o toFile.o AVL.o BodyStack.o TampilanDanKetentuan.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -42,11 +42,11 @@ UI.o: UI.cpp
 toFile.o: toFile.cpp
 	$(CPP) -c toFile.cpp -o toFile.o $(CXXFLAGS)
 
-../TubesSDAVer1/AVL.o: ../TubesSDAVer1/AVL.cpp
-	$(CPP) -c ../TubesSDAVer1/AVL.cpp -o ../TubesSDAVer1/AVL.o $(CXXFLAGS)
+AVL.o: AVL.cpp
+	$(CPP) -c AVL.cpp -o AVL.o $(CXXFLAGS)
 
-../TubesSDAVer1/BodyStack.o: ../TubesSDAVer1/BodyStack.cpp
-	$(CPP) -c ../TubesSDAVer1/BodyStack.cpp -o ../TubesSDAVer1/BodyStack.o $(CXXFLAGS)
+BodyStack.o: BodyStack.cpp
+	$(CPP) -c BodyStack.cpp -o BodyStack.o $(CXXFLAGS)
 
 TampilanDanKetentuan.o: TampilanDanKetentuan.cpp
 	$(CPP) -c TampilanDanKetentuan.cpp -o TampilanDanKetentuan.o $(CXXFLAGS)

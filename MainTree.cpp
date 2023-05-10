@@ -197,7 +197,7 @@ int main(){
 					printf("Tree Kosong\n");
 				}else{
 					printf("\nBinary Tree : \n+: Kanan, -Kiri\n ");
-					bPrintTree(rootBin, tab, -1);
+					bPrintTree(rootBin, Nil, false);
 				}
 				printf(" ======================================\n");
 				printf("\n setelah balancing \n");

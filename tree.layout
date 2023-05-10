@@ -2,7 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 Order=0,2,3,4,5,1,6,7,8,9,10,11
-Focused=2
+Focused=7
 =======
 Order=0,2,3,4,5,1,6,7,8,9,10
 Focused=10
@@ -23,9 +23,9 @@ CursorRow=5
 TopLine=72
 LeftChar=1
 [Editor_2]
-CursorCol=11
-CursorRow=188
-TopLine=182
+CursorCol=27
+CursorRow=200
+TopLine=185
 =======
 CursorCol=32
 CursorRow=244
@@ -57,14 +57,14 @@ TopLine=63
 >>>>>>> 4c843563472217fa1a66144f47a2d6199412d185
 LeftChar=1
 [Editor_6]
-CursorCol=29
-CursorRow=125
-TopLine=115
+CursorCol=42
+CursorRow=138
+TopLine=96
 LeftChar=1
 [Editor_7]
-CursorCol=1
-CursorRow=8
-TopLine=21
+CursorCol=6
+CursorRow=16
+TopLine=1
 LeftChar=1
 [Editor_8]
 CursorCol=31
