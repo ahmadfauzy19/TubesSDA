@@ -11,6 +11,10 @@
 #define Fs(L) (L)->fs
 #define Pr(L) (L)->pr
 #define First(P) (P).First
+<<<<<<< HEAD
+=======
+#define next(P) (P)->next
+>>>>>>> 9cf6f22a7a056526934a01aca24c529ccce7370f
 #define Head(P) (P).head
 #define Pointer(P) (P).pointer
 #define STRING char*

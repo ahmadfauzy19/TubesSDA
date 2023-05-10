@@ -71,7 +71,7 @@ void PrintInfo (ListS L)
 		else	/* Belum berada di akhir List */
 		{
 			 printf ("%s ", P->infoS->infoB);
-			 P = Next(P);
+			 P = next(P);
 		}
 		 }
 	}
@@ -89,11 +89,11 @@ void DelStack (ListS * L, addressStack * P)
 	 /* Algoritma */
 	PDel = First(*L);
 	X = PDel->infoS;
-	if (Next(PDel)==Nil) /* Hanya 1 elemen */
+	if (next(PDel)==Nil) /* Hanya 1 elemen */
 	{	
 		First(*L) = Nil;
 	}else {	/* List Lebih dari 1 elemen */	
-		First(*L) = Next(First(*L));	
+		First(*L) = next(First(*L));	
 	}
 //	DeAlokasi (PDel);
 	if (PDel != Nil){
