@@ -151,51 +151,111 @@ int main(){
 				break;
 			case 6:
 				getLoading();
-				printf("\n\n \t\t\t\t\t     *Transform To Binary berhasil *\n");
+				system("cls");
+				printf("\n\n     *Transform To Binary berhasil *\n");
 				rootBin = transformToBin(nbRoot);
-    			getchar();
-    			getchar();
+				printf(" ======================================\n");
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf(" sebelum transform \n");
+					printf("Print Tree : \nNon Binary Tree :\n ");
+					nbPrintTree(nbRoot, tab); 
+				}
+				printf("\n ======================================\n");
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf(" setelah transform \n");
+					printf("Binary Tree : \n+: Kanan, -Kiri\n ");
+					bPrintTree(rootBin, tab, -1);
+				}
+				printf(" ======================================\n");
+    			printf("enter untuk kembali ke menu...");
+				getchar();
+				getchar();
 				break;
 			case 7:
 				getLoading();
-				printf("\n\n \t\t\t\t\t\t  * Balancing selesai *\n");
+				system("cls");
+				printf("\n\t * Balancing selesai *\n\n");
 				CreateBin(&treeAvl);
 				Getnode(rootBin,&treeAvl);
-				getchar();
-				getchar();
-				break;
-			case 8:
-				system("cls");
+				printf(" ======================================\n");
+				printf(" sebelum transform \n");
+				printf(" ______________________________________\n");
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
 					printf("Print Tree : \nNon Binary Tree :\n ");
 					nbPrintTree(nbRoot, tab); 
 				}
+				printf(" ======================================\n");
+				printf("\n setelah transform \n");
+				printf(" ______________________________________\n");
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
-					printf("Binary Tree : \n#: Kanan, *Kiri\n ");
-					bPrintTree(rootBin, Nil, false);
+					printf("\nBinary Tree : \n+: Kanan, -Kiri\n ");
+					bPrintTree(rootBin, tab, -1);
 				}
+				printf(" ======================================\n");
+				printf("\n setelah balancing \n");
+				printf(" ______________________________________\n");
 				if(treeAvl.pointer==NULL){
 					printf("Tree Kosong\n");
 				}else{
-					printf("AVL TREE : \n#: Kanan, *Kiri\n ");
-					bPrintTree(treeAvl.pointer, Nil, false);
+					printf("\nAVL TREE : \n+: Kanan, -Kiri\n ");
+					bPrintTree(treeAvl.pointer, tab, -1);
 				}
-				system("pause");
+				printf(" ======================================\n");
+				printf("enter untuk kembali ke menu...");
+				getchar();
+				getchar();
+				break;
+			case 8:
+				system("cls");
+				printf("\n\t TAMPILAN SEMUA TREE \n");
+				printf(" ======================================\n");
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf("Print Tree : \nNon Binary Tree :\n ");
+					nbPrintTree(nbRoot, tab); 
+				}
+				printf(" ======================================\n");
+				if(nbRoot==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf("\nBinary Tree : \n+: Kanan, -Kiri\n ");
+					bPrintTree(rootBin, tab, -1);
+				}
+				printf(" ======================================\n");
+				if(treeAvl.pointer==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf("\nAVL TREE : \n+: Kanan, -Kiri\n ");
+					bPrintTree(treeAvl.pointer, tab, -1);
+				}
+				printf(" ======================================\n");
+				printf("enter untuk kembali ke menu...");
+				getchar();
+				getchar();
 				break;
 			case 9:
 				FILE *fp = fopen("tree.txt", "r");
 				if (access("tree.txt", F_OK) == 0){
 				    deSerializeTree(nbRoot, fp);
 				    fclose(fp);
-				    printf("Load Tree Berhasil\n");
+				    getLoading();
+				    system("cls");
+					printf("\n\n \t\t\t\t\t\t  * Load berhasil *\n\n");
+					printf("\t\t   Data yang berhasil ditambahkan = ");nbPreOrder(nbRoot);
 				}else{
 					printf("File tidak ditemukan\n");
 				}
-			    system("pause");
+				getchar();
+				getchar();
 				break;
 		}
 	}while(pilihan != 10);

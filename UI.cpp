@@ -29,7 +29,7 @@ void gotoxy(int x, int y)
 
 int getLoading(){ 
 	system("cls");
-		printf("\n\n\n\n\n\n\n\n\n\n\n\n \t\t\t\t\t               proses");
+		printf("\n\n\n\n\n\n\n\n\n\n \t\t\t\t\t               proses");
 		Sleep(300);
 		printf(". ");
 		Sleep(300);
@@ -46,30 +46,34 @@ void splashScreen(){
 
 
 	char loading[] = 
-	"\t\t\t\t\tLoading\n\
-	\t\t\t\t\t\t======================\n\
-	";
-	
-	
-	
+"\t\t\t\t\tLoading\n\
+\t\t\t\t\t\t======================\n\
+";
+
+
+
 	char author[] =
-	"\t              Created By :\n\
-	  \t\t\t\t\t\tAdrian Eka Saputra\n\
-	  \t\t\t\t\t\tAhmad Fauzy\n\
-	  \t\t\t\t\t\tAlfien Sukma P\n\
-	";
-	int i;
-	gotoxy(17,8);
-    for (i = 0;i < strlen(loading);i++){
+ "\t              Created By :\n\
+  \t\t\t\t\t\tAdrian Eka Saputra\n\
+  \t\t\t\t\t\tAhmad Fauzy\n\
+  \t\t\t\t\t\tAlfien Sukma P\n\
+ ";
+ int i;
+ gotoxy(17,8);
+   for (i = 0;i < strlen(loading);i++){
    		Sleep(2);
  		charToASCII(loading[i]);
-	}
+ 	}
   
-   	gotoxy(39,18);
-    for (i = 0; author[i]!=0 ; i++) {
-	    Sleep(10);
-	    printf("%c", author[i]);
-  	}
+   gotoxy(39,18);
+     for (i = 0; author[i]!=0 ; i++) {
+    Sleep(10);
+    printf("%c", author[i]);
+  }
+}
+
+void printTree(address root){
+	
 }
 
 void nbPrintTree(address root, char tab[]){
@@ -92,48 +96,49 @@ void nbPrintTree(address root, char tab[]){
 	}
 }
 
-void showTrunks(Trunk *p)
-{
-    if (p == Nil) {
+void bPrintTree(addressBin root, char tab[], int isLeft){
+	if (root == NULL) {
         return;
     }
- 
-    showTrunks(p->prev);
-    printf("%s", p->str);
+    char tempTab[255];
+    if(isLeft!=-1){
+		printf("%s", tab);
+	    printf(isLeft ? "|-" : "|+");
+	    snprintf(tempTab, sizeof(tempTab), "%s%s", tab, "   ");
+	}
+    printf("%s\n", root->infoB);
+    bPrintTree(root->left, tempTab, 1);
+    bPrintTree(root->right, tempTab, 0);
 }
 
-void bPrintTree(addressBin root, Trunk *prev, bool isLeft)
-{
-    if (root == Nil) {
-        return;
-    }
- 
-    const char* prev_str = "    ";
-    Trunk *trunk = new Trunk(prev, prev_str);
- 
-    bPrintTree(root->right, trunk, true);
- 
-    if (!prev) {
-        trunk->str = "---";
-    }
-    else if (isLeft)
-    {
-        trunk->str = "#---";
-        prev_str = "   |";
-    }
-    else {
-        trunk->str = "*---";
-        prev->str = prev_str;
-    }
- 
-    showTrunks(trunk);
-    printf(" %s\n", root->infoB);
- 
-    if (prev) {
-        prev->str = prev_str;
-    }
-    trunk->str = "   |";
- 
-    bPrintTree(root->left, trunk, false);
-}
+
+//void bprintTree(node* root, int spaces) {
+//    if (root == NULL) {
+//        return;
+//    }
+//    printTree(root->right, spaces + 6);
+//    printNode(root, spaces);
+//    printTree(root->left, spaces + 6);
+//}
+//
+//// Fungsi untuk menampilkan spasi
+//void printSpaces(int spaces) {
+//    int i;
+//    for (i = 0; i < spaces; i++) {
+//        printf(" ");
+//    }
+//}
+//
+//// Fungsi untuk menampilkan node
+//void printNode(node* root, int spaces) {
+//    if (root == NULL) {
+//        return;
+//    }
+//    printSpaces(spaces);
+//    printf("+-----+\n");
+//    printSpaces(spaces);
+//    printf("|  %s  |\n", root->data);
+//    printSpaces(spaces);
+//    printf("+-----+\n");
+//}
 

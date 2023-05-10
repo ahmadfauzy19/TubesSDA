@@ -44,8 +44,9 @@ void insTree(Tree *L, infotype X){
 	}
 	if(Head(*L) != Nil){ //cek tree sudah ada root atau belum
 		for(;;){
-			printf("## Daftar yang bisa dijadikan Parent ## \n");
+			printf("\n## Daftar yang bisa dijadikan Parent ## \n");
 			nbPreOrder(root);
+			printf("\n");
 			parent = (STRING) malloc(10 * sizeof(char)); //alokasi tempat untuk parent
 			printf("\nMasukkan parent: ");
 			scanf("%10s", parent);
