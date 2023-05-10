@@ -4,6 +4,7 @@
 #include "tree.h"
 #include <stdio.h>
 #include <windows.h>
+#include<stdio.h>
 
 void gotoxy(int x, int y);
 
@@ -23,6 +24,8 @@ void printTree(address root);
 void nbPrintTree(address root, char tab[]);
 
 void bPrintTree(addressBin root, char tab[], int isLeft);
+
+int getLoading();
 //
 //void printSpaces(int spaces) {
 //

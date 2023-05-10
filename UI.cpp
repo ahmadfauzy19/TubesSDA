@@ -1,6 +1,7 @@
 #include "UI.h"
 
 
+
 int i, j, width, height, x, y;
 
 void charToASCII(char c) 
@@ -25,6 +26,21 @@ void gotoxy(int x, int y)
  hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
  SetConsoleCursorPosition(hConsoleOutput,dwCursorPosition);
 }
+
+int getLoading(){ 
+	system("cls");
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n \t\t\t\t\t               proses");
+		Sleep(300);
+		printf(". ");
+		Sleep(300);
+		printf(". ");
+		Sleep(300);
+		printf(". ");
+		Sleep(300);
+		printf(". ");
+		Sleep(300);
+		printf(". ");
+	}
 
 void splashScreen(){
 

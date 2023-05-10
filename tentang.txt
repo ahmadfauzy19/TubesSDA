@@ -1,0 +1,27 @@
+ 1. Definisi Program
+
+   |*******************************************************************************************************
+   |	 Program ini merupakan program yang bertujuan untuk mengubah Non Binary tree menjadi Binary tree  |
+   |selain itu,program ini juga melakukan balancing dengan AVL dimana AVL ini dibuat untuk balancing tree |
+   |dengan rules "jika nilai ASCII lebih besar maka akan menjadi anak kanan dan sebaliknya akan menjadi   | 
+   |anak kiri "                                                                                           |
+   ********************************************************************************************************
+
+ 2. Panduan Program
+
+ penjelasan menu :
+	(1). insert Tree non binary
+		=> untuk manambahkan node ke non binary tree
+	(2). Traversal (semua jenis traversal)
+		=> menampilkan hasil traversing dari semua jenis tree (non binary, binary, AVL) sesuai jenis
+		   Traversingnya
+	(3). Transform To Binary
+		=> transformasi dari Non-Binary tree ke Binary tree dengan rules "first son jadi anak kiri
+		   dan next brother menjadi anak kanan"
+	(4). AVL 
+		=> Balancing Binary tree dengan metode Lexicographic Binary tree
+	(5). Print Tree
+		=> menampilkan visualisasi dari masing-masing jenis tree yang telah dibuat (Non-Binary, Binary
+		   dan AVL)
+	(6). Load tree
+		=> mengembalikan inputan Non-Binary sebelumnya 

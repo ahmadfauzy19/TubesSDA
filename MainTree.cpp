@@ -1,9 +1,9 @@
 #include "Tree.h"
-#include "UI.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include "UI.h"
 
 int main(){
 	/* Kamus Lokal */
@@ -19,21 +19,13 @@ int main(){
 	char tab[]="";
 	
 	/* Program */
+	awal();
+	system("cls");
 	splashScreen();
 	CreateTree (&Mytree);
 	do{
 		system("cls");
-		printf("\nMenu :\n");
-		printf(" 1. Insert Tree Non-Binary\n");
-		printf(" 2. Pre Order\n");
-		printf(" 3. Post Order\n");
-		printf(" 4. In Order\n");
-		printf(" 5. Level Order\n");
-		printf(" 6. Transform to Binary\n");
-		printf(" 7. AVL\n");
-		printf(" 8. Print Tree\n");
-		printf(" 9. Load Tree\n");
-		printf(" 10. Exit\n");
+		TampilanAwal();
 		printf("masukan pilihan :");scanf("%d",&pilihan);
 		switch(pilihan){
 			case 1:
@@ -51,7 +43,8 @@ int main(){
 					P=Search(Head(Mytree), nama);
 					if(P == Nil){
 						insTree(&Mytree, nama);
-					}else{
+					}
+					else{
 						printf("nama sudah ada\n");
 					}
 					FILE* fp = fopen("tree.txt", "w");
@@ -59,7 +52,8 @@ int main(){
 					fclose(fp);
 					getchar();
 					printf("apakah ingin insert lagi (y/n) ?");scanf("%c",&ask);
-				}while(ask == 'y' || ask == 'Y');
+				}
+				while(ask == 'y' || ask == 'Y');
 				break;
 			case 2:
 				printf("\nPre Order Non Binary Tree : ");
@@ -73,6 +67,12 @@ int main(){
 					printf("Tree Kosong\n");
 				}else{
 					bPreOrder(rootBin);
+				}
+				printf("\n\nPre Order Tree AVL : ");
+				if(treeAvl.pointer==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bPreOrder(treeAvl.pointer);
 				}
 				printf("\n");
 				system("pause");
@@ -90,6 +90,12 @@ int main(){
 				}else{
 					bPostOrder(rootBin);
 				}
+				printf("\n\npost Order Tree AVL : ");
+				if(treeAvl.pointer==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bPostOrder(treeAvl.pointer);
+				}
 				printf("\n");
 				system("pause");
 				break;
@@ -105,6 +111,12 @@ int main(){
 					printf("Tree Kosong\n");
 				}else{
 					bInOrder(rootBin);
+				}
+				printf("\n\npost Order Tree AVL : ");
+				if(treeAvl.pointer==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					bInOrder(treeAvl.pointer);
 				}
 				printf("\n");
 				system("pause");
@@ -126,18 +138,31 @@ int main(){
 						bLevelOrder(rootBin,i);
 					}
 				}
+				printf("\nLevel Order Binary Tree : ");
+				if(treeAvl.pointer==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					for(i=0; i<=bDepth(treeAvl.pointer); i++){
+						bLevelOrder(treeAvl.pointer,i);
+					}
+				}
 				printf("\n");
 				system("pause");
 				break;
 			case 6:
-				printf("Transform ke binary ...\n");
+				getLoading();
+				printf("\n\n \t\t\t\t\t     *Transform To Binary berhasil *\n");
 				rootBin = transformToBin(nbRoot);
-				system("Pause");
+    			getchar();
+    			getchar();
 				break;
 			case 7:
+				getLoading();
+				printf("\n\n \t\t\t\t\t\t  * Balancing selesai *\n");
 				CreateBin(&treeAvl);
 				Getnode(rootBin,&treeAvl);
-				system("pause");
+				getchar();
+				getchar();
 				break;
 			case 8:
 				system("cls");
@@ -174,7 +199,6 @@ int main(){
 				break;
 		}
 	}while(pilihan != 10);
-	 
 	return 0;
 }
 
