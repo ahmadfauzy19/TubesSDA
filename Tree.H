@@ -11,10 +11,7 @@
 #define Fs(L) (L)->fs
 #define Pr(L) (L)->pr
 #define First(P) (P).First
-<<<<<<< HEAD
-=======
 #define next(P) (P)->next
->>>>>>> 9cf6f22a7a056526934a01aca24c529ccce7370f
 #define Head(P) (P).head
 #define Pointer(P) (P).pointer
 #define STRING char*
@@ -57,28 +54,11 @@ typedef struct {
 } BinTree;
 
 
-//Adrian
 addressBin transformToBin(address nbRoot);
 addressBin AlokasiBin (infotype nama);
-/*********** PROTOTYPE ****************/
-/**** Predikat untuk test keadaan Tree ****/
 bool IsEmpty (Tree L);
-/* Mengirim true jika List Kosong */
-
-/**** Konstruktor/Kreator List Kosong ****/
 void CreateTree (Tree * L);
-/* IS : L sembarang */
-/* FS : Terbentuk List Kosong */
-
-/**** Manajemen Memory ****/
-address Alokasi (infotype nama);
-/* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address != Nil, 	   */
-/*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
-
 void insTree(Tree *L, infotype X);
-
 address Search(address P, infotype item);
 
 void bPreOrder(addressBin root);

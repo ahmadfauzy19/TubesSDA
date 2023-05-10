@@ -175,14 +175,14 @@ int main(){
 				if(nbRoot==NULL){
 					printf("Tree Kosong\n");
 				}else{
-					printf("Binary Tree : \n+: Kanan, -Kiri\n ");
-					bPrintTree(rootBin, tab, -1);
+					printf("Binary Tree : \n#: Kanan, *Kiri\n ");
+					bPrintTree(rootBin, Nil, false);
 				}
 				if(treeAvl.pointer==NULL){
 					printf("Tree Kosong\n");
 				}else{
-					printf("AVL TREE : \n+: Kanan, -Kiri\n ");
-					bPrintTree(treeAvl.pointer, tab, -1);
+					printf("AVL TREE : \n#: Kanan, *Kiri\n ");
+					bPrintTree(treeAvl.pointer, Nil, false);
 				}
 				system("pause");
 				break;
