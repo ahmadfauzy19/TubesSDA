@@ -1,7 +1,5 @@
 #include "UI.h"
 
-
-
 int i, j, width, height, x, y;
 
 void charToASCII(char c) 
@@ -72,10 +70,6 @@ void splashScreen(){
   }
 }
 
-void printTree(address root){
-	
-}
-
 void nbPrintTree(address root, char tab[]){
 	if (root == NULL) {
         return;
@@ -99,21 +93,22 @@ void nbPrintTree(address root, char tab[]){
 void showTrunks(Trunk *p)
 {
     if (p == Nil) {
+        return;
+    }
+ 
     showTrunks(p->prev);
     printf("%s", p->str);
 }
 
-void bPrintTree(addressBin root, Trunk *prev, bool isLeft)
-{
-    if (root == Nil) {
+void bPrintTree(addressBin root, Trunk *prev, bool isLeft){
+	if (root == Nil) {
         return;
     }
-
-    const char* prev_str = "    ";
+    const STRING prev_str = "    ";
     Trunk *trunk = new Trunk(prev, prev_str);
-
+ 
     bPrintTree(root->right, trunk, true);
-
+ 
     if (!prev) {
         trunk->str = "---";
     }
@@ -126,46 +121,15 @@ void bPrintTree(addressBin root, Trunk *prev, bool isLeft)
         trunk->str = "*---";
         prev->str = prev_str;
     }
-
+ 
     showTrunks(trunk);
     printf(" %s\n", root->infoB);
-
+ 
     if (prev) {
         prev->str = prev_str;
     }
     trunk->str = "   |";
-
-    bPrintTree(root->left, trunk, false);
+ 
+    bPrintTree(root->left, trunk, false);
 }
-
-
-//void bprintTree(node* root, int spaces) {
-//    if (root == NULL) {
-//        return;
-//    }
-//    printTree(root->right, spaces + 6);
-//    printNode(root, spaces);
-//    printTree(root->left, spaces + 6);
-//}
-//
-//// Fungsi untuk menampilkan spasi
-//void printSpaces(int spaces) {
-//    int i;
-//    for (i = 0; i < spaces; i++) {
-//        printf(" ");
-//    }
-//}
-//
-//// Fungsi untuk menampilkan node
-//void printNode(node* root, int spaces) {
-//    if (root == NULL) {
-//        return;
-//    }
-//    printSpaces(spaces);
-//    printf("+-----+\n");
-//    printSpaces(spaces);
-//    printf("|  %s  |\n", root->data);
-//    printSpaces(spaces);
-//    printf("+-----+\n");
-//}
 

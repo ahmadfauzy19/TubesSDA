@@ -35,7 +35,6 @@ typedef struct tElmTree{
 	address pr;
 	} ElmTree;
 
-
 typedef struct {
 	  address head;
 } Tree;
@@ -48,31 +47,18 @@ typedef struct tElmBinTree{
 	int lvl;
 	} ElmBinTree;
 
-
 typedef struct {
 	  addressBin pointer;
 } BinTree;
 
-
-//Adrian
 addressBin transformToBin(address nbRoot);
 addressBin AlokasiBin (infotype nama);
-/*********** PROTOTYPE ****************/
-/**** Predikat untuk test keadaan Tree ****/
+
 bool IsEmpty (Tree L);
-/* Mengirim true jika List Kosong */
 
-/**** Konstruktor/Kreator List Kosong ****/
 void CreateTree (Tree * L);
-/* IS : L sembarang */
-/* FS : Terbentuk List Kosong */
 
-/**** Manajemen Memory ****/
 address Alokasi (infotype nama);
-/* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address != Nil, 	   */
-/*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
-/* Jika alokasi gagal, mengirimkan Nil */
 
 void insTree(Tree *L, infotype X);
 

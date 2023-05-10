@@ -168,7 +168,7 @@ int main(){
 				}else{
 					printf(" setelah transform \n");
 					printf("Binary Tree : \n+: Kanan, -Kiri\n ");
-					bPrintTree(rootBin, tab, -1);
+					bPrintTree(rootBin, Nil, false);
 				}
 				printf(" ======================================\n");
     			printf("enter untuk kembali ke menu...");
@@ -197,7 +197,7 @@ int main(){
 					printf("Tree Kosong\n");
 				}else{
 					printf("\nBinary Tree : \n+: Kanan, -Kiri\n ");
-					bPrintTree(rootBin, Nil, false);
+					bPrintTree(rootBin, Nil, false);
 				}
 				printf(" ======================================\n");
 				printf("\n setelah balancing \n");
@@ -206,7 +206,7 @@ int main(){
 					printf("Tree Kosong\n");
 				}else{
 					printf("\nAVL TREE : \n+: Kanan, -Kiri\n ");
-					bPrintTree(treeAvl.pointer, tab, -1);
+					bPrintTree(rootBin, Nil, false);
 				}
 				printf(" ======================================\n");
 				printf("enter untuk kembali ke menu...");
@@ -228,14 +228,14 @@ int main(){
 					printf("Tree Kosong\n");
 				}else{
 					printf("\nBinary Tree : \n+: Kanan, -Kiri\n ");
-					bPrintTree(rootBin, tab, -1);
+					bPrintTree(rootBin, Nil, false);
 				}
 				printf(" ======================================\n");
 				if(treeAvl.pointer==NULL){
 					printf("Tree Kosong\n");
 				}else{
 					printf("\nAVL TREE : \n+: Kanan, -Kiri\n ");
-					bPrintTree(treeAvl.pointer, tab, -1);
+					bPrintTree(rootBin, Nil, false);
 				}
 				printf(" ======================================\n");
 				printf("enter untuk kembali ke menu...");

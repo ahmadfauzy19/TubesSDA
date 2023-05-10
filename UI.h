@@ -6,18 +6,21 @@
 #include <windows.h>
 #include<stdio.h>
 
-struct Trunk {
+struct Trunk
+{
     struct Trunk *prev;
-    const char* str;
-
-    Trunk(struct Trunk *prev, const char *str) {
+    const STRING str;
+ 
+    Trunk(struct Trunk *prev, const STRING str)
+    {
         this->prev = prev;
         this->str = str;
     }
 };
 
 void showTrunks(Trunk *p);
-void bPrintTree(addressBin root, Trunk *prev, bool isLeft);
+
+void bPrintTree(addressBin root, Trunk *prev, bool isLeft);
 
 void gotoxy(int x, int y);
 
@@ -32,16 +35,8 @@ void charToASCII(char c);
  */	
 void splashScreen();
 
-void printTree(address root);
-
 void nbPrintTree(address root, char tab[]);
 
-//void bPrintTree(addressBin root, char tab[], int isLeft);
-
 int getLoading();
-//
-//void printSpaces(int spaces) {
-//
-//void printNode(node* root, int spaces);
 
 #endif
