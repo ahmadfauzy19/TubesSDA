@@ -5,9 +5,13 @@
 #include <stdlib.h>
 #define Nil NULL
 #define Info(P) (P)->info
+#define InfoB(P) (P)->infoB
+#define InfoS(P) (P)->infoS
 #define Nb(L) (L)->nb
 #define Fs(L) (L)->fs
 #define Pr(L) (L)->pr
+#define First(P) (P).First
+//#define Next(P) (P)->next
 #define Head(P) (P).head
 #define Pointer(P) (P).pointer
 #define STRING char*
@@ -37,6 +41,7 @@ typedef struct tElmBinTree{
 	infotype infoB;
 	addressBin left;
 	addressBin right;
+	int lvl;
 	} ElmBinTree;
 
 
@@ -82,6 +87,38 @@ int bDepth(addressBin root);
 
 void serializeTree(address root, FILE *fp);
 int deSerializeTree(address &root, FILE *fp);
+
+//kamus data stack
+typedef struct tElmStack *addressStack;
+typedef struct tElmStack{
+	addressBin infoS;
+	addressStack next;
+}ElmStack;
+
+typedef struct {
+	addressStack First;
+} ListS;
+
+bool ListEmpty (ListS L);
+void CreateList (ListS * L);
+addressStack AlokasiS (addressBin X);
+void EnStack (ListS * L, addressBin X);
+void PrintInfo (ListS L);
+void DelStack (ListS * L, addressStack *P);
+
+//AVL
+void Getnode(addressBin head, BinTree *root);
+void insAVL(infotype X,BinTree *root);
+void CreateBin(BinTree *B);
+bool cmprAVL(infotype A, infotype B);
+void updatelevel(addressStack *head);
+void levelafterRotate(addressBin *head);
+addressBin AlokasiAVL(infotype nama);
+void balancing(ListS *MyStack, addressBin *root);
+addressBin SingleRotasiKiri(addressBin *node);
+addressBin DoubleRotateKananKiri(addressBin *node);
+addressBin SingleRotasiKanan(addressBin *node);
+addressBin DoubleRotateKiriKanan(addressBin *node);
 
 //void DeAlokasi (address P);
 ///* IS : P terdefinisi */

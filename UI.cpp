@@ -1,16 +1,3 @@
-/**
- *========================================================
- * Tanggal		: 22-05-2022
- * Program		: Cyclops Calculator
- * File			: UI.c
- * Deskripsi	: File implementasi User Interface Program
- * IDE			: Dev-C++, VSCode
- * Author		: Raka Mahardika Maulana 	(RMM)				  
- *				  Mochamad Ferdy Fauzan  	(MFF)
- *				  Muhammad Daffa Raihandika (MDR)
- *========================================================
- */
-
 #include "UI.h"
 
 
@@ -57,7 +44,6 @@ void splashScreen(){
  ";
  int i;
  gotoxy(17,8);
-  
    for (i = 0;i < strlen(loading);i++){
    		Sleep(2);
  		charToASCII(loading[i]);
@@ -109,4 +95,34 @@ void bPrintTree(addressBin root, char tab[], int isLeft){
     bPrintTree(root->right, tempTab, 0);
 }
 
+
+//void bprintTree(node* root, int spaces) {
+//    if (root == NULL) {
+//        return;
+//    }
+//    printTree(root->right, spaces + 6);
+//    printNode(root, spaces);
+//    printTree(root->left, spaces + 6);
+//}
+//
+//// Fungsi untuk menampilkan spasi
+//void printSpaces(int spaces) {
+//    int i;
+//    for (i = 0; i < spaces; i++) {
+//        printf(" ");
+//    }
+//}
+//
+//// Fungsi untuk menampilkan node
+//void printNode(node* root, int spaces) {
+//    if (root == NULL) {
+//        return;
+//    }
+//    printSpaces(spaces);
+//    printf("+-----+\n");
+//    printSpaces(spaces);
+//    printf("|  %s  |\n", root->data);
+//    printSpaces(spaces);
+//    printf("+-----+\n");
+//}
 

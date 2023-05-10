@@ -23,5 +23,9 @@ void printTree(address root);
 void nbPrintTree(address root, char tab[]);
 
 void bPrintTree(addressBin root, char tab[], int isLeft);
+//
+//void printSpaces(int spaces) {
+//
+//void printNode(node* root, int spaces);
 
 #endif

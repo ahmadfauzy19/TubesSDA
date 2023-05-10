@@ -9,6 +9,8 @@ int main(){
 	/* Kamus Lokal */
 	address P,*Q, nbRoot = NULL;
 	addressBin rootBin = NULL;
+	BinTree treeAvl;
+	treeAvl.pointer = NULL;
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama,buku;
@@ -133,6 +135,9 @@ int main(){
 				system("Pause");
 				break;
 			case 7:
+				CreateBin(&treeAvl);
+				Getnode(rootBin,&treeAvl);
+				system("pause");
 				break;
 			case 8:
 				system("cls");
@@ -147,6 +152,12 @@ int main(){
 				}else{
 					printf("Binary Tree : \n+: Kanan, -Kiri\n ");
 					bPrintTree(rootBin, tab, -1);
+				}
+				if(treeAvl.pointer==NULL){
+					printf("Tree Kosong\n");
+				}else{
+					printf("AVL TREE : \n+: Kanan, -Kiri\n ");
+					bPrintTree(treeAvl.pointer, tab, -1);
 				}
 				system("pause");
 				break;
