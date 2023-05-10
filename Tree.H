@@ -11,7 +11,7 @@
 #define Fs(L) (L)->fs
 #define Pr(L) (L)->pr
 #define First(P) (P).First
-//#define Next(P) (P)->next
+#define next(P) (P)->next
 #define Head(P) (P).head
 #define Pointer(P) (P).pointer
 #define STRING char*

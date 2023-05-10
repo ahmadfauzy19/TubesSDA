@@ -141,7 +141,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=..\TubesSDAVer1\AVL.cpp
+FileName=AVL.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -151,7 +151,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=..\TubesSDAVer1\BodyStack.cpp
+FileName=BodyStack.cpp
 CompileCpp=1
 Folder=
 Compile=1
