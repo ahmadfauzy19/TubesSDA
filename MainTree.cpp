@@ -151,6 +151,12 @@ int main(){
 				break;
 			case 6:
 				getLoading();
+				if(nbRoot == NULL){
+					printf("\n\t\t\t\t\t\t * Tree Kosong *\n\n");
+					getchar();
+					getchar();
+					break;
+				}
 				system("cls");
 				printf("\n\n     *Transform To Binary berhasil *\n");
 				rootBin = transformToBin(nbRoot);
@@ -177,30 +183,23 @@ int main(){
 				break;
 			case 7:
 				getLoading();
+				if(rootBin==NULL){
+					printf("\n\t\t\t\t\t\t * Transform terlebih dahulu *\n\n");
+					getchar();
+					getchar();
+					break;
+				}
 				system("cls");
 				printf("\n\t * Balancing selesai *\n\n");
 				CreateBin(&treeAvl);
 				Getnode(rootBin,&treeAvl);
 				printf(" ======================================\n");
-				printf(" sebelum transform \n");
+				printf("\n Sebelum Balancing \n");
 				printf(" ______________________________________\n");
-				if(nbRoot==NULL){
-					printf("Tree Kosong\n");
-				}else{
-					printf("Print Tree : \nNon Binary Tree :\n ");
-					nbPrintTree(nbRoot, tab); 
-				}
+				printf("\nBinary Tree : \n");
+				bPrintTree(rootBin, Nil, false);
 				printf(" ======================================\n");
-				printf("\n setelah transform \n");
-				printf(" ______________________________________\n");
-				if(nbRoot==NULL){
-					printf("Tree Kosong\n");
-				}else{
-					printf("\nBinary Tree : \n");
-					bPrintTree(rootBin, Nil, false);
-				}
-				printf(" ======================================\n");
-				printf("\n setelah balancing \n");
+				printf("\n Setelah Balancing \n");
 				printf(" ______________________________________\n");
 				if(treeAvl.pointer==NULL){
 					printf("Tree Kosong\n");

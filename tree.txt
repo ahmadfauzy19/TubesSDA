@@ -1,1 +1,1 @@
-Ayah Anak1 cucu2 NULL cucu3 NULL NULL Anak2 NULL Anak3 cucu1 NULL NULL NULL NULL 
+Ayah Anak1 Cucu2 NULL Cucu3 NULL NULL Anak2 NULL Anak3 Cucu1 NULL NULL NULL NULL 
