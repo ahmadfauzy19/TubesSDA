@@ -34,7 +34,6 @@ void EnStack (ListS * L, addressBin X)
 	 /* Aloritma */
 	P = AlokasiS (X);
 	if (P != Nil){
-		printf("alokasi stack berhasil \n");
 		if((*L).First==Nil){ //belum ada root
 			P->next = Nil;	
 			L->First = P;
@@ -70,7 +69,6 @@ void PrintInfo (ListS L)
 		}
 		else	/* Belum berada di akhir List */
 		{
-			 printf ("%s ", P->infoS->infoB);
 			 P = next(P);
 		}
 		 }
@@ -82,7 +80,6 @@ void DelStack (ListS * L, addressStack * P)
 /* FS : Elemen terakhir list dihapus : nilai info disimpan pada X */
 /* 	dan alamat elemen terakhir di dealokasi */
 {
-	printf("\nmasuk delete stack bos\n");
 	addressBin X;
 	 /* Kamus Lokal */
 	addressStack PDel;
