@@ -4,6 +4,8 @@
 #include <conio.h>
 #include <string.h>
 #include "UI.h"
+#include <time.h>
+#include <dirent.h>
 
 int main(){
 	/* Kamus Lokal */
@@ -13,10 +15,13 @@ int main(){
 	treeAvl.pointer = NULL;
 	Tree Mytree;
 	BinTree Btree;
-	infotype nama,buku;
-	int pilihan, i;
+	infotype nama;
+	int pilihan, i, hasFile, a, chooseFile=0;
 	char ask;
-	char tab[]="";
+	char tab[]="", nameFile[20], newName[20], listFile[100][20];
+	FILE* fp;
+    DIR *dir;
+    struct dirent *ent;
 	
 	/* Program */
 	awal();
@@ -29,31 +34,53 @@ int main(){
 		printf("masukan pilihan :");scanf("%d",&pilihan);
 		switch(pilihan){
 			case 1:
-				do{
-					system("cls");
-					printf("**tampilan preorder **\n");
-					if (nbRoot == Nil){
-						nbRoot = Mytree.head;
-					}else{
-						Mytree.head = nbRoot;
-					}
-					nbPreOrder(nbRoot);
-					nama=(STRING)malloc(10*sizeof(char));
-					printf("\nmasukan nama :");scanf("%s", nama);
-					P=Search(Head(Mytree), nama);
-					if(P == Nil){
-						insTree(&Mytree, nama);
-					}
-					else{
-						printf("nama sudah ada\n");
-					}
-					FILE* fp = fopen("tree.txt", "w");
-					serializeTree(nbRoot, fp);
-					fclose(fp);
-					getchar();
-					printf("apakah ingin insert lagi (y/n) ?");scanf("%c",&ask);
+				hasFile = 0;
+				if (nbRoot == Nil){
+					do{
+						system("cls");
+						printf("--Insert Tree pada File Baru--\n");
+						if (hasFile != 0){
+							printf("!File %s telah ada. Lakukan load tree pada menu untuk menggunakan file tersebut!\n", newName);	
+						}
+						printf("masukan nama file (0. untuk kembali): "); scanf("%s", nameFile);
+						if(strcmp(nameFile, "0") != 0){
+							fixName(nameFile, newName);
+							if(fileExists(newName)){
+								hasFile = 1;
+							}else{
+								hasFile = 0;
+							}	
+						}
+					}while(hasFile == 1 && strcmp(nameFile, "0"));
 				}
-				while(ask == 'y' || ask == 'Y');
+				
+				if(strcmp(nameFile, "0") != 0){
+					do{
+						if (nbRoot == Nil){
+							nbRoot = Mytree.head;
+						}else{
+							Mytree.head = nbRoot;
+						}
+						system("cls");
+						printf("**tampilan preorder **\n");
+						nbPreOrder(nbRoot);
+						nama=(STRING)malloc(10*sizeof(char));
+						printf("\nmasukan nama :");scanf("%s", nama);
+						P=Search(Head(Mytree), nama);
+						if(P == Nil){
+							insTree(&Mytree, nama);
+						}
+						else{
+							printf("nama sudah ada\n");
+						}
+						fp = fopen(newName, "w");
+						serializeTree(nbRoot, fp);
+						fclose(fp);
+						getchar();
+						printf("apakah ingin insert lagi (y/n) ?");scanf("%c",&ask);
+					}
+					while(ask == 'y' || ask == 'Y');
+				}
 				break;
 			case 2:
 				printf("\nPre Order Non Binary Tree : ");
@@ -242,16 +269,35 @@ int main(){
 				getchar();
 				break;
 			case 9:
-				FILE *fp = fopen("tree.txt", "r");
-				if (access("tree.txt", F_OK) == 0){
-				    deSerializeTree(nbRoot, fp);
-				    fclose(fp);
-				    getLoading();
-				    system("cls");
-					printf("\n\n \t\t\t\t\t\t  * Load berhasil *\n\n");
-					printf("\t\t   Data yang berhasil ditambahkan = ");nbPreOrder(nbRoot);
+				a = 0;
+				dir = opendir (".");
+				getLoading();
+				system("cls");
+				//cek direktori dan mendapatkan nama file
+				printf("**Daftar File**\n");
+				if(dir != Nil){
+					while ((ent = readdir (dir)) != NULL){
+				        if(has_txt_extension(ent->d_name) && strcmp(ent->d_name, "tentang.txt")){
+				        	strcpy(listFile[a], ent->d_name);
+				        	printf("%d. %s\n", a+1, listFile[a]);
+				        	a++;
+				    	}
+				    }
+				    closedir(dir);
+				}else {
+			        printf("Tidak bisa membuka direktori");
+			    }
+			    printf("Pilih File (1-%d) : ", a); scanf("%d", &chooseFile);
+			    if (chooseFile != 0 && chooseFile <= a){
+					FILE *fp = fopen(listFile[chooseFile-1], "r");
+					deSerializeTree(nbRoot, fp);
+					fclose(fp);
+					getLoading();
+					system("cls");
+					printf("\n\n \t\t\t\t\t  * Load file %s berhasil *\n\n", listFile[chooseFile-1]);
+					printf("\t\t\t   Data yang berhasil ditambahkan = ");nbPreOrder(nbRoot);	
 				}else{
-					printf("File tidak ditemukan\n");
+					printf("!File tidak ada. Masukkan inputan yang benar!");
 				}
 				getchar();
 				getchar();

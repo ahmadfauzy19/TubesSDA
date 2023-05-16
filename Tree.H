@@ -16,12 +16,6 @@
 #define Pointer(P) (P).pointer
 #define STRING char*
 
-#ifdef WIN32
-#include <io.h>
-#define F_OK 0
-#define access _access
-#endif
-
 void awal();
 void TampilanAwal();
 void tentang();
@@ -75,8 +69,12 @@ int nbDepth(address root);
 void bLevelOrder(addressBin root, int level);
 int bDepth(addressBin root);
 
+//file
 void serializeTree(address root, FILE *fp);
 int deSerializeTree(address &root, FILE *fp);
+bool fileExists(const char *file_name);
+void fixName(const char *file_name, char *new_name);
+bool has_txt_extension(char const *name);
 
 //kamus data stack
 typedef struct tElmStack *addressStack;

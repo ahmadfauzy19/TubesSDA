@@ -37,3 +37,35 @@ int deSerializeTree(address &root, FILE *fp) {
 	// Finally return 0 for successful finish
 	return 0;	
 }
+
+void fixName(const char *file_name, char *new_name){
+	int len;
+	char nameFile[20], lastFour[5];
+	
+	len = strlen(file_name);
+	strncpy(lastFour, file_name + len - 4, 4);
+	lastFour[4] = '\0';
+	if(strcmp(lastFour, ".txt") != 0){
+		sprintf(new_name, "%s.txt", file_name);
+	}else{
+		strcpy(new_name, file_name);
+	}
+
+}
+
+bool fileExists(const char *file_name)
+{
+    FILE *fp = fopen(file_name, "r");
+    bool is_exist = true;
+    if (fp == NULL || file_name == "tentang.txt"){
+        is_exist = false;
+        fclose(fp);
+    }
+    return is_exist;
+}
+
+bool has_txt_extension(char const *name)
+{
+    size_t len = strlen(name);
+    return len > 4 && strcmp(name + len - 4, ".txt") == 0;
+}
