@@ -18,6 +18,14 @@ struct Trunk
     }
 };
 
+int getX();
+
+int getY();
+
+void bPrint(addressBin t, int x, int i, int y);
+
+void nbPrint(address root, int x, int i, int y);
+
 void showTrunks(Trunk *p);
 
 void bPrintTree(addressBin root, Trunk *prev, bool isLeft);

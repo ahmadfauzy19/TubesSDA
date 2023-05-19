@@ -25,6 +25,19 @@ void gotoxy(int x, int y)
  SetConsoleCursorPosition(hConsoleOutput,dwCursorPosition);
 }
 
+int getX() {
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    return csbi.dwCursorPosition.X;
+}
+
+int getY() {
+    CONSOLE_SCREEN_BUFFER_INFO csbi;
+    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    return csbi.dwCursorPosition.Y;
+}
+
+
 int getLoading(){ 
 	system("cls");
 		printf("\n\n\n\n\n\n\n\n\n\n \t\t\t\t\t               proses");
@@ -68,6 +81,51 @@ void splashScreen(){
     Sleep(10);
     printf("%c", author[i]);
   }
+}
+
+void nbPrint(address root, int x, int i, int y) {
+    gotoxy(x, y);
+    char infoShort[4]; // Menyimpan 3 huruf pertama dari info
+    strncpy(infoShort, root->info, 3);
+    infoShort[3] = '\0'; // Menambahkan karakter null terminator pada akhir string
+    printf("%s", infoShort);
+    if (root->fs != NULL) {
+        if (root->fs->nb != NULL) {
+            nbPrint(root->fs, x - i / 2, i / 2, y + 1);
+        } else {
+            nbPrint(root->fs, x - 1, i, y + 1);
+        }
+    }
+
+    if (root->nb != NULL) {
+        nbPrint(root->nb, x + i, i, y);
+    }
+}
+
+void bPrint(addressBin t, int x, int i, int y) {
+    if (t != NULL) {
+        gotoxy(x, y);
+        char infoShort[4]; // Menyimpan 3 huruf pertama dari info
+	    strncpy(infoShort, t->infoB, 3);
+	    infoShort[3] = '\0'; // Menambahkan karakter null terminator pada akhir string
+	    printf("%s", infoShort);
+
+        i = i / 2;
+        if (t->right != NULL) {
+            gotoxy(x-1, y + 1);
+            printf("_|_");
+            gotoxy(x + i, y + 2);
+            printf("|"); // Garis anak kanan
+            bPrint(t->right, x + i, i, y + 3);
+        }
+        if (t->left != NULL) {
+            gotoxy(x-1, y + 1);
+            printf("_|_");
+            gotoxy(x - i, y + 2);
+            printf("|"); // Garis anak kiri
+            bPrint(t->left, x - i, i, y + 3);
+        }
+    }
 }
 
 void nbPrintTree(address root, char tab[]){

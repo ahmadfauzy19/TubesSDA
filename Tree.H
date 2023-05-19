@@ -50,6 +50,10 @@ addressBin AlokasiBin (infotype nama);
 
 bool IsEmpty (Tree L);
 
+int countNodes(address root);
+
+int countSubtreeNodes(address node);
+
 void CreateTree (Tree * L);
 
 address Alokasi (infotype nama);

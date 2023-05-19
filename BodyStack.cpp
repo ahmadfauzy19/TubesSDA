@@ -98,3 +98,22 @@ void DelStack (ListS * L, addressStack * P)
 	}
 }
 
+int countNodes(address root) {
+    if (root == NULL) {
+        return 0;
+    } else {
+        return countSubtreeNodes(root);
+    }
+}
+
+int countSubtreeNodes(address node) {
+    if (node == NULL) {
+        return 0;
+    } else {
+        int count = 1; // Menghitung node saat ini
+        count += countSubtreeNodes(node->fs); // Menghitung jumlah node pada subtree anak
+        count += countSubtreeNodes(node->nb); // Menghitung jumlah node pada subtree saudara
+        return count;
+    }
+}
+

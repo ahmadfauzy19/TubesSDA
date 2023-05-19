@@ -16,7 +16,7 @@ int main(){
 	Tree Mytree;
 	BinTree Btree;
 	infotype nama;
-	int pilihan, i, hasFile, a, chooseFile=0;
+	int pilihan, i, hasFile, a, chooseFile=0, x, y, x2, y2;
 	char ask;
 	char tab[]="", nameFile[20], newName[20], listFile[100][20];
 	FILE* fp;
@@ -241,29 +241,41 @@ int main(){
 				break;
 			case 8:
 				system("cls");
+				gotoxy(0,1);
 				printf("\n\t TAMPILAN SEMUA TREE \n");
-				printf(" ======================================\n");
+				gotoxy(0,3);
+				printf(" ======================================");
+				x=getX();
+				gotoxy(0,5);
 				if(nbRoot==NULL){
-					printf("Tree Kosong\n");
+					printf("Tree Kosong");
 				}else{
-					printf("Print Tree : \nNon Binary Tree :\n ");
-					nbPrintTree(nbRoot, tab); 
+					printf("Non Binary Tree :");
+					nbPrint(nbRoot, 20, countNodes(nbRoot)*2, getY()+2);
 				}
-				printf(" ======================================\n");
-				if(nbRoot==NULL){
-					printf("Tree Kosong\n");
+				gotoxy(x+2, 3);
+				printf(" ======================================");
+				x2=getX();
+				gotoxy(x+2, 5);
+				if(rootBin==NULL){
+					printf("Tree Kosong");
 				}else{
-					printf("\nBinary Tree : \n");
-					bPrintTree(rootBin, Nil, false);
+					printf("Binary Tree : ");
+					y = getY();
+					bPrint(rootBin, x+12, 10, y+2);
 				}
-				printf(" ======================================\n");
+				y2 = getY();
+				gotoxy(x2+2, 3);
+				printf("======================================");
+				gotoxy(x2+2,5);
 				if(treeAvl.pointer==NULL){
-					printf("Tree Kosong\n");
+					printf("Tree Kosong");
 				}else{
-					printf("\nAVL TREE : \n+:");
-					bPrintTree(treeAvl.pointer, Nil, false);
+					printf("AVL TREE :");
+					y=getY();
+					bPrint(treeAvl.pointer, x2+12 , 10, y+2);
 				}
-				printf(" ======================================\n");
+				gotoxy(0, y2+2);
 				printf("enter untuk kembali ke menu...");
 				getchar();
 				getchar();
