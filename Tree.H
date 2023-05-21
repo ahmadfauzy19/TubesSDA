@@ -113,4 +113,9 @@ addressBin DoubleRotateKananKiri(addressBin *node);
 addressBin SingleRotasiKanan(addressBin *node);
 addressBin DoubleRotateKiriKanan(addressBin *node);
 
+//delete
+void DeleteTree(address* root1,addressBin* root2,addressBin* root3);
+void deleteNB(address *root);
+void DeleteB(addressBin *root);
+
 #endif

@@ -32,6 +32,7 @@ int main(){
 		system("cls");
 		TampilanAwal();
 		printf("masukan pilihan :");scanf("%d",&pilihan);
+		getchar();
 		switch(pilihan){
 			case 1:
 				hasFile = 0;
@@ -53,7 +54,6 @@ int main(){
 						}
 					}while(hasFile == 1 && strcmp(nameFile, "0"));
 				}
-				
 				if(strcmp(nameFile, "0") != 0){
 					do{
 						if (nbRoot == Nil){
@@ -206,7 +206,6 @@ int main(){
 				printf(" ======================================\n");
     			printf("enter untuk kembali ke menu...");
 				getchar();
-				getchar();
 				break;
 			case 7:
 				getLoading();
@@ -236,7 +235,6 @@ int main(){
 				}
 				printf(" ======================================\n");
 				printf("enter untuk kembali ke menu...");
-				getchar();
 				getchar();
 				break;
 			case 8:
@@ -278,7 +276,6 @@ int main(){
 				gotoxy(0, y2+2);
 				printf("enter untuk kembali ke menu...");
 				getchar();
-				getchar();
 				break;
 			case 9:
 				a = 0;
@@ -300,22 +297,63 @@ int main(){
 			        printf("Tidak bisa membuka direktori");
 			    }
 			    printf("Pilih File (1-%d) : ", a); scanf("%d", &chooseFile);
+			    getchar();
 			    if (chooseFile != 0 && chooseFile <= a){
 					FILE *fp = fopen(listFile[chooseFile-1], "r");
 					deSerializeTree(nbRoot, fp);
 					fclose(fp);
 					getLoading();
 					system("cls");
-					printf("\n\n \t\t\t\t\t  * Load file %s berhasil *\n\n", listFile[chooseFile-1]);
+					printf("\n\n \t\t\t\t\t  * load file %s berhasil *\n\n", listFile[chooseFile-1]);
 					printf("\t\t\t   Data yang berhasil ditambahkan = ");nbPreOrder(nbRoot);	
 				}else{
 					printf("!File tidak ada. Masukkan inputan yang benar!");
 				}
 				getchar();
+				break;
+			case 10:
+				a = 0;
+				dir = opendir (".");
+				getLoading();
+				system("cls");
+				//cek direktori dan mendapatkan nama file
+				printf("**Daftar File**\n");
+				if(dir != Nil){
+					while ((ent = readdir (dir)) != NULL){
+				        if(has_txt_extension(ent->d_name) && strcmp(ent->d_name, "tentang.txt")){
+				        	strcpy(listFile[a], ent->d_name);
+				        	printf("%d. %s\n", a+1, listFile[a]);
+				        	a++;
+				    	}
+				    }
+				    closedir(dir);
+				}else {
+			        printf("Tidak bisa membuka direktori");
+			    }
+			    printf("Pilih File (1-%d) : ", a); scanf("%d", &chooseFile);
+			    getchar();
+			    if (chooseFile != 0 && chooseFile <= a){
+					FILE *fp = fopen(listFile[chooseFile-1], "r");
+					fclose(fp);
+					remove(listFile[chooseFile-1]);
+					getLoading();
+					system("cls");
+					printf("\n\n \t\t\t\t\t  * delete file %s berhasil *\n\n", listFile[chooseFile-1]);	
+				}else{
+					printf("!File tidak ada. Masukkan inputan yang benar!");
+				}
+				getchar();
+				break;
+				break;
+			case 11:
+				DeleteTree(&nbRoot, &rootBin, &treeAvl.pointer);
+				break;
+			default:
+				printf("masukan pilihan dengan benar !!\n");
 				getchar();
 				break;
 		}
-	}while(pilihan != 10);
+	}while(pilihan != 12);
 	return 0;
 }
 

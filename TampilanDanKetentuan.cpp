@@ -82,7 +82,9 @@ void TampilanAwal(){
 	printf(" | 7. AVL                             |\n");
 	printf(" | 8. Print Tree                      |\n");
 	printf(" | 9. Load Tree                       |\n");
-	printf(" | 10. Exit                           |\n");
+	printf(" | 10. delete file                    |\n");
+	printf(" | 11. delete Tree                    |\n");
+	printf(" | 12. Exit                           |\n");
 	printf(" ======================================\n");
 }
 

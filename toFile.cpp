@@ -69,3 +69,29 @@ bool has_txt_extension(char const *name)
     size_t len = strlen(name);
     return len > 4 && strcmp(name + len - 4, ".txt") == 0;
 }
+
+//void deleteFile(){
+//	int a;
+//	FILE *f_tamu;
+//	if ((f_tamu=fopen("tamu.txt", "rb"))==NULL)
+//	{
+//		printf ("Data sudah kosong\n");
+//		exit(1);
+//	}
+//	printf("Apakah anda yakin? (Y/T) : ");
+//	a = getche();
+//	if(a=='y'||a=='Y'){
+//		fclose(f_tamu);
+//		remove("tamu.txt");
+//		printf("\nData berhasil dihapus! \n");
+//		system("pause");
+//		home();
+//	} else if(a=='t'||a=='T'){
+//		printf("Data tidak jadi dihapus! \n");
+//		system("pause");
+//		home();
+//	} else{
+//		printf("Masukkan input yang valid! \n");
+//		delete();
+//	}
+//}
